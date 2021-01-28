@@ -5,6 +5,7 @@ function About() {
   return (
     <div className="container">
       <h1 id="title">This will be the About page.</h1>
+      <hr />
       <div>
       <h2>How it Started</h2>
       <p>Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank

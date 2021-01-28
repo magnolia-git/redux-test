@@ -7,25 +7,22 @@ import Home from './pages/Home.js';
 import About from './pages/About.js';
 import Team from './pages/Team.js';
 import Support from './pages/Support.js';
-import { fetchTeam, addSupport } from './redux/ActionCreators';
+import { fetchTeam, postSupport } from './redux/ActionCreators';
+import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
   return {
-    team: state.team,
-    support: state.support
+    team: state.team
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-fetchTeam: () => {dispatch(fetchTeam())},
-addSupport: () => {dispatch(addSupport())}
+  fetchTeam: () => {dispatch(fetchTeam())},
+	resetSupportForm: () => { dispatch(actions.reset('support'))},
+  postSupport: (firstname, lastname, email, message) => { dispatch(postSupport(firstname, lastname, email, message))}
 });
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
   	this.props.fetchTeam();
@@ -42,7 +39,7 @@ class App extends Component {
     <Route path="/" exact component={Home} />
     <Route path="/about" component={About} />
     <Route path="/team" component={() => <Team team={this.props.team} />} />} />
-    <Route path="/support" component={Support} />
+    <Route path="/support" component={() => <Support postSupport={this.props.postSupport} resetSupportForm={this.props.resetSupportForm} />} />
     </Switch>
     <Footer />
     </div>

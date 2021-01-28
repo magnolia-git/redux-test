@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import {
   Collapse,
   Navbar,
@@ -19,7 +19,7 @@ import '../index.css';
 
 class Header extends Component {
 
-
+// Still needs a way to hide the login and my account link when not signed in
 
   render() {
     return (

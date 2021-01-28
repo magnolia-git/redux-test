@@ -6,9 +6,8 @@ import '../index.css';
 function RenderTeam({team}){
 
   return (
-    <div>
-      {/*  Media is used instead of Card */}
-      <Media tag="li">
+    <Col style={{padding:'20px'}}>
+      <Media>
         <Media left middle>
           <Media object style={{borderRadius: '50%'}} src={baseUrl + team.image} alt={team.name} />
         </Media>
@@ -18,7 +17,7 @@ function RenderTeam({team}){
           <p>{team.description}</p>
         </Media>
       </Media>
-    </div>
+    </Col>
   );
 }
 
@@ -26,25 +25,23 @@ function Team(props) {
 
   const team = props.team.team.map((team) => {
     return (
-
-        <Col xs="6" key={team.id}>
-          <RenderTeam team={team} />
-        </Col>
-
+      <div key={team.id}>
+        <RenderTeam team={team} />
+      </div>
     );
   });
 
   return (
-    <div>
+    <div className="container">
       <div>
         <h1 id="title">Merit America Bank Team Members</h1>
         <hr />
       </div>
-
-        <Media list>
-        {team}
-        </Media>
-
+      <Media list>
+        <Row xs="1" lg="2">
+          {team}
+        </Row>
+      </Media>
     </div>
   );
 }
