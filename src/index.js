@@ -1,13 +1,34 @@
 import React from 'react';
+import { combineReducers, applyMiddleware } from 'redux';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from 'redux';
+import allReducer from './reducers';
+import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from 'react-router-dom';
+import { Team } from './redux/team';
+
+const store = createStore(
+  combineReducers({
+    team: Team
+  }),
+  applyMiddleware(thunk, logger)
+);
+
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>
+  </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
