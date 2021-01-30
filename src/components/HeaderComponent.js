@@ -23,43 +23,32 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="col-lg-12">
-        <Navbar light>
+      <div className="container">
+        <div className="row">
+          <Navbar light>
+            <div className="col-md-4 col-sm-12 col-xs-12">
+            <NavbarBrand >
+              <img src="path857.png"></img>
+            </NavbarBrand>
+            </div>
 
-          <NavbarBrand className="mr-auto" position="absolute">
-            <img src="path857.png"></img>
-          </NavbarBrand>
+            <div className="col-md-2 col-3">
+                <NavLink href="/">Home</NavLink>
+            </div>
+            <div className="col-md-2 col-3">
+                <NavLink href="/about">About</NavLink>
+            </div>
+            <div className="col-md-2 col-3">
+                <NavLink href="/team">Team</NavLink>
+            </div>
 
-          <Nav className="ml-auto" justifyContentCenter>
-            <NavItem>
-              <Button color="success">Login</Button>
-            </NavItem>
+            <div className="col-md-2 col-3">
+                <NavLink href="/support">Support</NavLink>
+            </div>
 
-            <NavItem>
-              <NavLink  href="/">Home</NavLink>
-            </NavItem>
 
-            <NavItem>
-              <NavLink href="/about">About</NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink href="/team">Team</NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink href="/support">Support</NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink disabled href="#">My Account</NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink disabled href="#">Logout</NavLink>
-            </NavItem>
-          </Nav>
-        </Navbar>
+          </Navbar>
+        </div>
       </div>
     );
   }

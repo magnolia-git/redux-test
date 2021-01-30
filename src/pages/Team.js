@@ -6,10 +6,10 @@ import '../index.css';
 function RenderTeam({team}){
 
   return (
-    <Col style={{padding:'20px'}}>
+    <div className="col">
       <Media>
         <Media left middle>
-          <Media object style={{borderRadius: '50%'}} src={baseUrl + team.image} alt={team.name} />
+          <img style={{borderRadius: '50%', width: '200px'}} src={baseUrl + team.image} alt={team.name} />
         </Media>
         <Media body className="ml-5">
           <Media heading>{team.name}</Media>
@@ -17,7 +17,7 @@ function RenderTeam({team}){
           <p>{team.description}</p>
         </Media>
       </Media>
-    </Col>
+    </div>
   );
 }
 
@@ -38,7 +38,7 @@ function Team(props) {
         <hr />
       </div>
       <Media list>
-        <Row xs="1" lg="2">
+        <Row lg="2" md="1">
           {team}
         </Row>
       </Media>

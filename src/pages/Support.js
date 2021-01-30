@@ -29,10 +29,9 @@ class Support extends Component {
     <div className="container">
       <h1 id="title">This is a Very Supportive Title!!!</h1>
       <hr />
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7384.861434863314!2d-77.03419502573749!3d38.90221858699054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7956c148399%3A0xebb35be2aa84c066!2sWashington%2C%20DC%2020005!5e0!3m2!1sen!2sus!4v1611778124092!5m2!1sen!2sus" width="400px" height="400px" frameborder="0" style={{margin: '5px', border:'0', float: 'right'}} allowfullscreen="" aria-hidden="true" tabindex="0"></iframe>
       <Form model="support" onSubmit={(values) => this.handleSubmit(values)}>
         <Row className="form-group">
-          <Col md={6}>
+          <Col xs={6}>
             <Control.text
               model=".firstname"
               id="firstname"
@@ -52,7 +51,7 @@ class Support extends Component {
               }}
             />
           </Col>
-          <Col md={6}>
+          <Col xs={6}>
             <Control.text
               model=".lastname"
               id="lastname"
@@ -119,8 +118,8 @@ class Support extends Component {
         </Row>
 
         <Row className="form-group">
-          <Col md={12}>
-            <Button type="submit" color="primary">Send Support</Button>
+          <Col xs={12}>
+            <Button type="submit" block color="primary">Send Support</Button>
           </Col>
         </Row>
       </Form>

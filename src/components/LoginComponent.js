@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 
 class LoginComponent extends Component {
   render() {
     return (
-      <div style={{border: '2px solid', float: 'right', width: '300px', height: '200px', textAlign: 'center' }}>
-        <p>Welcome Back</p>
+      <div style={{padding: '5px', border: '2px solid', textAlign: 'center' }}>
+        <h4>Welcome Back</h4>
         <p>username</p>
         <p>password</p>
-        <p>login button</p>
-        <p>Not a member? Register here!</p>
+        <div>
+        <Button color="success">Login</Button>
+        </div>
+        <div>
+        <Button size="sm" color="primary">Not a member? Register here!</Button>
+        </div>
       </div>
     );
   }
