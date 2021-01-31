@@ -7,11 +7,11 @@ function RenderTeam({team}){
 
   return (
     <div className="col">
-      <Media>
+      <Media id="smoothBorder">
         <Media left middle>
           <img style={{borderRadius: '50%', width: '200px'}} src={baseUrl + team.image} alt={team.name} />
         </Media>
-        <Media body className="ml-5">
+        <Media body className="ml-1">
           <Media heading>{team.name}</Media>
           <p>{team.role}</p>
           <p>{team.description}</p>
@@ -34,7 +34,7 @@ function Team(props) {
   return (
     <div className="container">
       <div>
-        <h1 id="title">Merit America Bank Team Members</h1>
+        <h2 id="title">Merit America Bank Team Members</h2>
         <hr />
       </div>
       <Media list>

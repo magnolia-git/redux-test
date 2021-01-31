@@ -20,7 +20,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <div id="footer">
+      <div className="col" id="footer">
         <Nav>
           <NavLink href="/">Home</NavLink> <NavLink href="/about">About</NavLink> <NavLink href="/team">Team</NavLink> <NavLink href="/support">Support</NavLink>
 

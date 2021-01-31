@@ -19,17 +19,15 @@ import '../index.css';
 
 class Header extends Component {
 
-// Still needs a way to hide the login and my account link when not signed in
-
   render() {
     return (
       <div className="container">
-        <div className="row">
+        <div style={{textAlign: 'center'}} className="row">
           <Navbar light>
-            <div className="col-md-4 col-sm-12 col-xs-12">
-            <NavbarBrand >
+            <div className="col-md-4 col-sm-12 col-12">
+
               <img src="path857.png"></img>
-            </NavbarBrand>
+
             </div>
 
             <div className="col-md-2 col-3">

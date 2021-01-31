@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import Header from './components/HeaderComponent';
 import Footer from './components/FooterComponent';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import Home from './pages/Home.js';
-import About from './pages/About.js';
-import Team from './pages/Team.js';
-import Support from './pages/Support.js';
+import Home from './pages/Home';
+import About from './pages/About';
+import Team from './pages/Team';
+import Support from './pages/Support';
+import Register from './pages/Register';
 import { fetchTeam, postSupport } from './redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
@@ -40,6 +41,7 @@ class App extends Component {
     <Route path="/about" component={About} />
     <Route path="/team" component={() => <Team team={this.props.team} />} />} />
     <Route path="/support" component={() => <Support postSupport={this.props.postSupport} resetSupportForm={this.props.resetSupportForm} />} />
+    <Route path="/register" component={Register} />
     </Switch>
     <Footer />
     </div>

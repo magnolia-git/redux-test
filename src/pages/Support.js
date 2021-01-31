@@ -27,8 +27,13 @@ class Support extends Component {
 
   return (
     <div className="container">
-      <h1 id="title">This is a Very Supportive Title!!!</h1>
+      <h2 id="title">This is a Very Supportive Title!!!</h2>
       <hr />
+      <div className="row">
+        <div className="col" id="smoothBorder">
+          <p style={{textAlign: 'center'}}>We want to help you with your bank problems. Throw us a line, why don'cha?</p>
+        </div>
+      </div>
       <Form model="support" onSubmit={(values) => this.handleSubmit(values)}>
         <Row className="form-group">
           <Col xs={6}>
