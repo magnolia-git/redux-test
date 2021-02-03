@@ -11,16 +11,17 @@ import allReducer from './reducers';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
-import { Team } from './redux/team';
-import { InitialSupport } from './redux/forms';
+import { team } from './redux/team';
+import { InitialSupport, InitialUser } from './redux/forms';
 import { createForms } from 'react-redux-form';
 
 
 const store = createStore(
   combineReducers({
-    team: Team,
+    team: team,
     ...createForms({
-      support: InitialSupport
+      support: InitialSupport,
+      user: InitialUser
     })
   }),
   applyMiddleware(thunk, logger)

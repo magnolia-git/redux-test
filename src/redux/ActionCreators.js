@@ -3,6 +3,48 @@ import { baseUrl } from '../shared/baseUrl';
 
 // Submit support Message. It'll be like the Restaurant website we made in the coursera course.
 
+export const addUser = (user) => ({
+  type: Actions.ADD_USER,
+  payload: user
+
+});
+
+export const postUser = (userName, email, password) => (dispatch) => {
+
+  const newUser = {
+    userName: userName,
+    email: email,
+    password: password
+  }
+
+  return fetch(baseUrl + 'auth/register', {
+    method: 'POST',
+    body: JSON.stringify(newUser),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
+    } else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  },
+  error => {
+    var errmess = new Error(error.message);
+    throw errmess;
+  })
+  .then(response => response.json())
+  .then(response => dispatch(addUser(response)))
+  .catch(error => { console.log('Submit user ', error.message);
+    alert('User cannot be registered\nError: ' + error.message);
+  });
+
+}
 
 
 export const addSupport = (support) => ({
@@ -74,9 +116,9 @@ export const fetchTeam = () => (dispatch) => {
     .catch(error => dispatch(teamFailed(error.message)));
   }
 
-  export const teamLoading = () => ({
-    type: Actions.TEAM_LOADING
-    });
+export const teamLoading = () => ({
+  type: Actions.TEAM_LOADING
+  });
 
 export const teamFailed = (errmess) => ({
   type: Actions.TEAM_FAILED,

@@ -1,22 +1,24 @@
-import * as Actions from './Actions';
+import { ADD_TEAM, TEAM_LOADING, TEAM_FAILED } from './Actions';
 
-export const Team = (state = {
-  isLoading: true,
+export function team(state = {
+  isLoading: false,
   errMess: null,
   team: []
-}, action) => {
+}, action) {
+
   switch(action.type) {
 
-    case Actions.ADD_TEAM:
+    case ADD_TEAM:
       return {...state, isLoading: false, errMess: null, team: action.payload};
 
-    case Actions.TEAM_LOADING:
+    case TEAM_LOADING:
       return {...state, isLoading: true, errMess: null, team: []};
 
-    case Actions.TEAM_FAILED:
+    case TEAM_FAILED:
       return {...state, isLoading: false, errMess: action.payload, team: []};
 
     default:
       return state;
+
   }
 }

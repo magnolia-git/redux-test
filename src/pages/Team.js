@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Media, Col, Row } from 'reactstrap';
 import { baseUrl } from '../shared/baseUrl';
 import '../index.css';

@@ -3,4 +3,10 @@ export const InitialSupport = {
   lastname: '',
   email: '',
   message: ''
-}
+};
+
+export const InitialUser = {
+  userName: '',
+  email: '',
+  password: ''
+};
