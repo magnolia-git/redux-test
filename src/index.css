@@ -22,15 +22,13 @@ code {
 }
 
 img {
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #footer {
   position: fixed;
   bottom: 0;
-  width: 100%;
-  background-color: white;
 }
 
 #title {
@@ -49,8 +47,8 @@ NavLink {
 }
 
 #smoothBorder {
-  margin: 15px;
   padding: 20px;
+  margin: 20px;
   background-color: white;
   box-shadow: 0px 00px 15px white;
   border-radius: 35px;
@@ -66,6 +64,7 @@ NavLink {
   background-color: white;
 }
 
-.container {
-
+#maxheight {
+  height: 80vh;
+  background-color: white;
 }

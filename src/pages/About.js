@@ -6,9 +6,9 @@ function About() {
     <div>
       <h2 id="title">This will be the About page.</h2>
       <hr />
-      <div className="container" id="smoothBorder">
+      <div className="container">
 
-        <div>
+        <div id="smoothBorder">
           <h2>How it Started</h2>
           <p>You take the merit and you take the bank. You take everything that innovates. You fix it all up and when you're done,
           you share the same goal with everyone. So come on in, feel free to do some banking, stay a while, 'cause someone's always helping!
@@ -17,7 +17,11 @@ function About() {
           <p>Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank
           Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank
           Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank</p>
-          <h2>PANIC</h2>
+          <h2>Today</h2>
+          <p>Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank
+          Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank
+          Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank</p>
+          <h2>Tomorrow</h2>
           <p>Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank
           Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank
           Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank Bank</p>

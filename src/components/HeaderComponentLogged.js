@@ -17,7 +17,7 @@ import {
 import { Link } from 'react-router-dom';
 import '../index.css';
 
-class Header extends Component {
+class HeaderLogged extends Component {
 
   render() {
     return (
@@ -30,20 +30,27 @@ class Header extends Component {
 
             </div>
 
-            <div className="col-md-2 col-3">
+            <div className="col-md-1 col-2">
                 <NavLink href="/">Home</NavLink>
             </div>
-            <div className="col-md-2 col-3">
+            <div className="col-md-1 col-2">
                 <NavLink href="/about">About</NavLink>
             </div>
-            <div className="col-md-2 col-3">
+            <div className="col-md-1 col-2">
                 <NavLink href="/team">Team</NavLink>
             </div>
 
-            <div className="col-md-2 col-3">
+            <div className="col-md-1 col-2">
                 <NavLink href="/support">Support</NavLink>
             </div>
 
+            <div className="col-md-1 col-2">
+                <NavLink href="/account">Account</NavLink>
+            </div>
+
+            <div className="col-md-1 col-2">
+                <NavLink href="/">Logout</NavLink>
+            </div>
 
           </Navbar>
         </div>
@@ -51,4 +58,4 @@ class Header extends Component {
     );
   }
 }
-export default Header;
+export default HeaderLogged;

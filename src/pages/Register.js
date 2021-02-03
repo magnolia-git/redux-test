@@ -11,6 +11,13 @@ function RegistrationForm(props) {
         <div className="row">
           <div id="inputBox" className="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-8 offset-2">
               <form>
+                <div className="form-group text-left">
+                    <input type="text"
+                        className="form-control"
+                        id="userName"
+                        placeholder="Username"
+                    />
+                </div>
                   <div className="form-group text-left">
                   <input type="email"
                          className="form-control"
@@ -18,20 +25,13 @@ function RegistrationForm(props) {
                          aria-describedby="emailHelp"
                          placeholder="Email Address"
                   />
-                  <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.*</small>
                   </div>
                   <div className="form-group text-left">
                       <input type="password"
                           className="form-control"
                           id="password"
                           placeholder="Password"
-                      />
-                  </div>
-                  <div className="form-group text-left">
-                      <input type="password"
-                          className="form-control"
-                          id="confirmPassword"
-                          placeholder="Confirm Password"
                       />
                   </div>
                   <button

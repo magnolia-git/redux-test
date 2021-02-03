@@ -11,7 +11,7 @@ function RenderTeam({team}){
         <Media left middle>
           <img style={{borderRadius: '50%', width: '200px'}} src={baseUrl + team.image} alt={team.name} />
         </Media>
-        <Media body className="ml-1">
+        <Media body className="ml-2">
           <Media heading>{team.name}</Media>
           <p>{team.role}</p>
           <p>{team.description}</p>
