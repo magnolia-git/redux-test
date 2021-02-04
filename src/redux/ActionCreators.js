@@ -9,19 +9,20 @@ export const addUser = (user) => ({
 
 });
 
-export const postUser = (userName, email, password) => (dispatch) => {
+export const postUser = (userName, password) => (dispatch) => {
 
   const newUser = {
     userName: userName,
-    email: email,
     password: password
   }
 
-  return fetch(baseUrl + 'auth/register', {
+  return fetch('/', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:3000'
     },
     credentials: 'same-origin'
   })

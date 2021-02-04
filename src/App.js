@@ -24,16 +24,47 @@ const mapDispatchToProps = (dispatch) => ({
 	resetSupportForm: () => { dispatch(actions.reset('support'))},
   resetRegisterForm: () => { dispatch(actions.reset('user'))},
   postSupport: (firstname, lastname, email, message) => { dispatch(postSupport(firstname, lastname, email, message))},
-  postUser: (userName, email, password) => { dispatch(postUser(userName, email, password))}
+//  postNewUser: (userName, email, password) => { dispatch(postNewUser(userName, email, password))},
+  postUser: (userName, password) => { dispatch(postUser(userName, password))}
 });
 
 class App extends Component {
 
-  componentDidMount() {
-  	this.props.fetchTeam();
-  }
-
-
+  // Constructor() {
+  //   this.state = {
+  //     userName: null,
+  //     password: null,
+  //     login: false,
+  //     store: null
+  //   };
+  // }
+  //
+  // componentDidMount() {
+  //   this.storeCollector();
+  //   this.props.fetchTeam();
+  // }
+  // storeCollector() {
+  //   let store=JSON.parse(localStorage.getItem('login'));
+  //   if (store && store.login) {
+  //     this.setState({login: true, store: store})
+  //   }
+  // }
+  //
+  // login() {
+  //   fetch('http://192.168.4.11:31337/authenticate', {
+  //     method:"POST",
+  //     body:JSON.stringify(this.state)
+  //   }).then((response) => {
+  //     response.json().then((result) => {
+  //       console.warn("result", result);
+  //       localStorage.setItem('login',JSON.stringify({
+  //         login: true,
+  //         token: result.token
+  //       }))
+  //       this.storeCollector();
+  //     })
+  //   })
+  // }
 
   render() {
 

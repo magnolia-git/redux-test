@@ -12,13 +12,15 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import { team } from './redux/team';
-import { InitialSupport, InitialUser } from './redux/forms';
+import { InitialSupport, InitialNewUser, InitialUser } from './redux/forms';
 import { createForms } from 'react-redux-form';
 
 
 const store = createStore(
   combineReducers({
     team: team,
+    login: false,
+    store: null,
     ...createForms({
       support: InitialSupport,
       user: InitialUser

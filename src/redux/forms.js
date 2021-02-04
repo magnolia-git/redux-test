@@ -5,8 +5,13 @@ export const InitialSupport = {
   message: ''
 };
 
-export const InitialUser = {
+export const InitialNewUser = {
   userName: '',
   email: '',
+  password: ''
+};
+
+export const InitialUser = {
+  userName: '',
   password: ''
 };

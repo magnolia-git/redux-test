@@ -51,27 +51,7 @@ class Register extends Component {
             />
           </Col>
         </Row>
-        <Row className="form-group">
-          <Col xs={12}>
-            <Control.text
-              model=".email"
-              id="email"
-              name="email"
-              placeholder="Email Address*"
-              className="form-control"
-              validators={{required, minLength: minLength(3), maxLength: maxLength(15), validEmail}}
-            />
-            <Errors
-              className="text-danger"
-              model=".email"
-              show="touched"
-              messages={{
-                required: 'Required. ',
-                validEmail: 'Invalid Email Address. '
-              }}
-            />
-          </Col>
-        </Row>
+
         <Row className="form-group">
           <Col xs={12}>
             <Control.password
@@ -97,7 +77,7 @@ class Register extends Component {
 
         <Row className="form-group">
           <Col xs={12}>
-            <Button type="submit" block color="primary">Register</Button>
+            <Button type="submit" block color="primary">Login</Button>
           </Col>
         </Row>
       </Form>
