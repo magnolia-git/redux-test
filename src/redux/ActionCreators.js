@@ -1,132 +1,140 @@
-import * as Actions from './Actions';
-import { baseUrl } from '../shared/baseUrl';
+import * as Actions from "./Actions";
+import { baseUrl } from "../shared/baseUrl";
 
 // Submit support Message. It'll be like the Restaurant website we made in the coursera course.
 
 export const addUser = (user) => ({
   type: Actions.ADD_USER,
-  payload: user
-
+  payload: user,
 });
 
-export const postUser = (userName, password) => (dispatch) => {
-
+export const postUser = (username, password) => (dispatch) => {
   const newUser = {
-    userName: userName,
-    password: password
-  }
+    username: username,
+    password: password,
+  };
 
-  return fetch('/', {
-    method: 'POST',
+  const URL = "http://localhost:8080/api/authenticate";
+  return fetch(URL, {
+    method: "POST",
     body: JSON.stringify(newUser),
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:3000'
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-    credentials: 'same-origin'
   })
-  .then(response => {
-    if (response.ok) {
-      return response;
-    } else {
-      var error = new Error('Error ' + response.status + ': ' + response.statusText);
-      error.response = response;
-      throw error;
-    }
-  },
-  error => {
-    var errmess = new Error(error.message);
-    throw errmess;
-  })
-  .then(response => response.json())
-  .then(response => dispatch(addUser(response)))
-  .catch(error => { console.log('Submit user ', error.message);
-    alert('User cannot be registered\nError: ' + error.message);
-  });
-
-}
-
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => dispatch(addUser(response)))
+    .catch((error) => {
+      console.log("Submit user ", error.message);
+      alert("User cannot be registered\nError: " + error.message);
+    });
+};
 
 export const addSupport = (support) => ({
   type: Actions.ADD_SUPPORT,
-  payload: support
-
+  payload: support,
 });
 
-export const postSupport = (firstname, lastname, email, message) => (dispatch) => {
-
+export const postSupport = (firstname, lastname, email, message) => (
+  dispatch
+) => {
   const newSupport = {
     firstname: firstname,
     lastname: lastname,
     email: email,
-    message: message
-  }
+    message: message,
+  };
   newSupport.date = new Date().toISOString();
 
-  return fetch(baseUrl + 'supportlog', {
-    method: 'POST',
+  return fetch(baseUrl + "supportlog", {
+    method: "POST",
     body: JSON.stringify(newSupport),
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    credentials: 'same-origin'
+    credentials: "same-origin",
   })
-  .then(response => {
-    if (response.ok) {
-      return response;
-    } else {
-      var error = new Error('Error ' + response.status + ': ' + response.statusText);
-      error.response = response;
-      throw error;
-    }
-  },
-  error => {
-    var errmess = new Error(error.message);
-    throw errmess;
-  })
-  .then(response => response.json())
-  .then(response => dispatch(addSupport(response)))
-  .catch(error => { console.log('Submit support ', error.message);
-    alert('Support could not be logged\nError: ' + error.message);
-  });
-
-}
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => dispatch(addSupport(response)))
+    .catch((error) => {
+      console.log("Submit support ", error.message);
+      alert("Support could not be logged\nError: " + error.message);
+    });
+};
 
 // Fetch Team members
 
 export const fetchTeam = () => (dispatch) => {
   dispatch(teamLoading(true));
 
-  return fetch(baseUrl + 'team')
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        var error = new Error('Error ' + response.status + ': ' + response.statusText);
-        error.response = response;
-        throw error;
+  return fetch(baseUrl + "team")
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
       }
-    },
-    error => {
-      var errmess = new Error(error.message);
-      throw errmess;
-    })
-    .then(response => response.json())
-    .then(team => dispatch(addTeam(team)))
-    .catch(error => dispatch(teamFailed(error.message)));
-  }
+    )
+    .then((response) => response.json())
+    .then((team) => dispatch(addTeam(team)))
+    .catch((error) => dispatch(teamFailed(error.message)));
+};
 
 export const teamLoading = () => ({
-  type: Actions.TEAM_LOADING
-  });
+  type: Actions.TEAM_LOADING,
+});
 
 export const teamFailed = (errmess) => ({
   type: Actions.TEAM_FAILED,
-  payload: errmess
-  });
+  payload: errmess,
+});
 
 export const addTeam = (team) => ({
   type: Actions.ADD_TEAM,
-  payload: team
+  payload: team,
 });

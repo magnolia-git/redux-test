@@ -10,6 +10,7 @@ console.log(currentTime);
 
 function Account() {
   return (
+    <div>
       <div className="container">
         {/*Ternary Operator*/}
         {isLoggedIn ? <h1>Hello</h1> : <Login />}

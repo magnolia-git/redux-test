@@ -6,12 +6,12 @@ export const InitialSupport = {
 };
 
 export const InitialNewUser = {
-  userName: '',
+  username: '',
   email: '',
   password: ''
 };
 
 export const InitialUser = {
-  userName: '',
+  username: '',
   password: ''
 };

@@ -15,7 +15,7 @@ class Register extends Component {
   }
 
   handleSubmit(values) {
-    this.props.postUser(values.userName, values.email, values.password);
+    this.props.postUser(values.username, values.email, values.password);
     console.log("Current State is: " + JSON.stringify(values));
     alert("Registering user.\n" + JSON.stringify(values));
     this.props.resetRegisterForm();
@@ -32,10 +32,10 @@ class Register extends Component {
         <Row className="form-group" xs={6}>
           <Col xs={12}>
             <Control.text
-              model=".userName"
-              id="userName"
-              name="userName"
-              placeholder="Username*"
+              model=".username"
+              id="username"
+              name="username"
+              placeholder="username*"
               className="form-control"
               validators={{required, minLength: minLength(3), maxLength: maxLength(15)}}
             />

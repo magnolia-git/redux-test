@@ -26,15 +26,15 @@ const mapDispatchToProps = (dispatch) => ({
 	resetSupportForm: () => { dispatch(actions.reset('support'))},
   resetRegisterForm: () => { dispatch(actions.reset('user'))},
   postSupport: (firstname, lastname, email, message) => { dispatch(postSupport(firstname, lastname, email, message))},
-//  postNewUser: (userName, email, password) => { dispatch(postNewUser(userName, email, password))},
-  postUser: (userName, password) => { dispatch(postUser(userName, password))}
+//  postNewUser: (username, email, password) => { dispatch(postNewUser(username, email, password))},
+  postUser: (username, password) => { dispatch(postUser(username, password))}
 });
 
 class App extends Component {
 
   // Constructor() {
   //   this.state = {
-  //     userName: null,
+  //     username: null,
   //     password: null,
   //     login: false,
   //     store: null
