@@ -15,7 +15,9 @@ import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
   return {
-    team: state.team
+    team: state.team,
+    login: state.login,
+    store: state.store
   };
 }
 

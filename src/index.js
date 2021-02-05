@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
-import allReducer from './reducers';
+
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { team } from './redux/team';
 import { InitialSupport, InitialNewUser, InitialUser } from './redux/forms';
 import { createForms } from 'react-redux-form';
 
-
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const store = createStore(
   combineReducers({
     team: team,
@@ -25,9 +25,9 @@ const store = createStore(
       support: InitialSupport,
       user: InitialUser
     })
-  }),
+  }), composeEnhancers(
   applyMiddleware(thunk, logger)
-);
+));
 
 
 ReactDOM.render(
