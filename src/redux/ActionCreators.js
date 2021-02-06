@@ -16,13 +16,12 @@ export const postUser = (userName, password) => (dispatch) => {
     password: password
   }
 
-  return fetch('/', {
+  return fetch('http://url:port/authenticate', {
     method: 'POST',
     body: JSON.stringify(newUser),
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:3000'
+      'Accept': '*/*'
     },
     credentials: 'same-origin'
   })

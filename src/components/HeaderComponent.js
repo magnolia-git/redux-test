@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -31,17 +20,17 @@ class Header extends Component {
             </div>
 
             <div className="col-md-2 col-3">
-                <NavLink href="/">Home</NavLink>
+                <Link to="/">Home</Link>
             </div>
             <div className="col-md-2 col-3">
-                <NavLink href="/about">About</NavLink>
+                <Link to="/about">About</Link>
             </div>
             <div className="col-md-2 col-3">
-                <NavLink href="/team">Team</NavLink>
+                <Link to="/team">Team</Link>
             </div>
 
             <div className="col-md-2 col-3">
-                <NavLink href="/support">Support</NavLink>
+                <Link to="/support">Support</Link>
             </div>
 
 

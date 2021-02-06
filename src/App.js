@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './components/HeaderComponent';
-import HeaderLogged from './components/HeaderComponentLogged';
 import Footer from './components/FooterComponent';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import Home from './pages/Home';
@@ -15,9 +14,7 @@ import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
   return {
-    team: state.team,
-    login: state.login,
-    store: state.store
+    team: state.team
   };
 }
 
@@ -74,7 +71,7 @@ class App extends Component {
     <div>
     <Header />
     <Switch location={this.props.location}>
-    <Route path="/" exact component={Home} />
+    <Route path="/" exact component={() => <Home postUser={this.props.postUser} />} />
     <Route path="/about" component={About} />
     <Route path="/team" component={() => <Team team={this.props.team} />} />
     <Route path="/support" component={() => <Support postSupport={this.props.postSupport} resetSupportForm={this.props.resetSupportForm} />} />
