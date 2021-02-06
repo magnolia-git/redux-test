@@ -1,18 +1,5 @@
-import React, { Component, useState } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
-} from 'reactstrap';
+import React, { Component } from 'react';
+import { Nav } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class Footer extends Component {
@@ -21,10 +8,12 @@ class Footer extends Component {
   render() {
     return (
       <div className="col" id="footer">
-        <Nav>
-          <NavLink href="/">Home</NavLink> <NavLink href="/about">About</NavLink> <NavLink href="/team">Team</NavLink> <NavLink href="/support">Support</NavLink>
+        <div className="row">
+        <Nav style={{padding: '10px'}}>
+          <Link to="/">Home</Link> <Link to="/about">About</Link> <Link to="/team">Team</Link> <Link to="/support">Support</Link>
 
         </Nav>
+        </div>
       </div>
 
     );

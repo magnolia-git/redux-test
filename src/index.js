@@ -19,8 +19,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const store = createStore(
   combineReducers({
     team: team,
-    login: false,
-    store: null,
     ...createForms({
       support: InitialSupport,
       user: InitialUser

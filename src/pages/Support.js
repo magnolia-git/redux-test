@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../index.css';
 import { Control, Form, Errors, actions } from 'react-redux-form';
-import { Button, Label, Col, Row } from 'reactstrap';
+import { Button, Col, Row } from 'reactstrap';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);

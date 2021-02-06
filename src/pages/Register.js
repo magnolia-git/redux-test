@@ -37,11 +37,11 @@ class Register extends Component {
               name="username"
               placeholder="username*"
               className="form-control"
-              validators={{required, minLength: minLength(3), maxLength: maxLength(15)}}
+              validators={{required}}
             />
             <Errors
               className="text-danger"
-              model=".firstname"
+              model=".userName"
               show="touched"
               messages={{
                 required: 'Required. ',
@@ -51,7 +51,28 @@ class Register extends Component {
             />
           </Col>
         </Row>
-
+        <Row className="form-group" xs={6}>
+          <Col xs={12}>
+            <Control.text
+              model=".email"
+              id="email"
+              name="email"
+              placeholder="Email*"
+              className="form-control"
+              validators={{required}}
+            />
+            <Errors
+              className="text-danger"
+              model=".email"
+              show="touched"
+              messages={{
+                required: 'Required. ',
+                minLength: 'Must be greater than 2 characters. ',
+                maxLength: 'Must be shorter than 16 characters. '
+              }}
+            />
+          </Col>
+        </Row>
         <Row className="form-group">
           <Col xs={12}>
             <Control.password
@@ -60,11 +81,11 @@ class Register extends Component {
               className="form-control"
               name="password"
               placeholder="Password*"
-              validators={{required, minLength: minLength(3), maxLength: maxLength(16)}}
+              validators={{required}}
             />
             <Errors
               className="text-danger"
-              model=".message"
+              model=".password"
               show="touched"
               messages={{
                 required: 'Required. ',
@@ -77,7 +98,7 @@ class Register extends Component {
 
         <Row className="form-group">
           <Col xs={12}>
-            <Button type="submit" block color="primary">Login</Button>
+            <Button type="submit" block color="primary">Register</Button>
           </Col>
         </Row>
       </Form>

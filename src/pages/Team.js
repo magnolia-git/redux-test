@@ -1,5 +1,5 @@
 import React from 'react';
-import { Media, Col, Row } from 'reactstrap';
+import { Media, Row } from 'reactstrap';
 import { baseUrl } from '../shared/baseUrl';
 import '../index.css';
 
