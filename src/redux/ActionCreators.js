@@ -3,51 +3,6 @@ import { baseUrl } from "../shared/baseUrl";
 
 // Submit support Message. It'll be like the Restaurant website we made in the coursera course.
 
-export const addUser = (user) => ({
-  type: Actions.ADD_USER,
-  payload: user,
-});
-
-export const postUser = (username, password) => (dispatch) => {
-  const newUser = {
-    username: username,
-    password: password,
-  };
-
-  const URL = "http://localhost:8080/api/authenticate";
-  return fetch(URL, {
-    method: "POST",
-    body: JSON.stringify(newUser),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
-    .then(
-      (response) => {
-        if (response.ok) {
-          return response;
-        } else {
-          var error = new Error(
-            "Error " + response.status + ": " + response.statusText
-          );
-          error.response = response;
-          throw error;
-        }
-      },
-      (error) => {
-        var errmess = new Error(error.message);
-        throw errmess;
-      }
-    )
-    .then((response) => response.json())
-    .then((response) => dispatch(addUser(response)))
-    .catch((error) => {
-      console.log("Submit user ", error.message);
-      alert("User cannot be registered\nError: " + error.message);
-    });
-};
-
 export const addSupport = (support) => ({
   type: Actions.ADD_SUPPORT,
   payload: support,
@@ -138,3 +93,4 @@ export const addTeam = (team) => ({
   type: Actions.ADD_TEAM,
   payload: team,
 });
+

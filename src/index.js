@@ -12,13 +12,16 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import { team } from './redux/team';
-import { InitialSupport, InitialNewUser, InitialUser } from './redux/forms';
+import { reducer as userStatus } from './redux/users/reducer';
+import { InitialSupport, InitialUser } from './redux/forms';
 import { createForms } from 'react-redux-form';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const store = createStore(
   combineReducers({
-    team: team,
+    team,
+    userStatus,
+    store: null,
     ...createForms({
       support: InitialSupport,
       user: InitialUser
@@ -26,8 +29,6 @@ const store = createStore(
   }), composeEnhancers(
   applyMiddleware(thunk, logger)
 ));
-
-
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>

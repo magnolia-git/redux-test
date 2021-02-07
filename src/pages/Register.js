@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../index.css';
 import { Control, Form, Errors, actions } from 'react-redux-form';
 import { Button, Label, Col, Row } from 'reactstrap';
+import { createUser } from '../redux/users/actions';
+import { connect } from 'react-redux';
+import {Redirect }from 'react-router-dom';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -15,13 +18,16 @@ class Register extends Component {
   }
 
   handleSubmit(values) {
-    this.props.postUser(values.username, values.email, values.password);
+    this.props.createUser(values);
     console.log("Current State is: " + JSON.stringify(values));
     alert("Registering user.\n" + JSON.stringify(values));
     this.props.resetRegisterForm();
   }
 
+  
+
   render() {
+     
 
   return(
     <div className="container col-6">
@@ -32,10 +38,94 @@ class Register extends Component {
         <Row className="form-group" xs={6}>
           <Col xs={12}>
             <Control.text
-              model=".username"
-              id="username"
-              name="username"
-              placeholder="username*"
+              model=".firstName"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name*"
+              className="form-control"
+              validators={{required}}
+            />
+            <Errors
+              className="text-danger"
+              model=".firstName"
+              show="touched"
+              messages={{
+                required: 'Required. ',
+                minLength: 'Must be greater than 2 characters. ',
+              }}
+            />
+          </Col>
+        </Row>
+        <Row className="form-group" xs={6}>
+          <Col xs={12}>
+            <Control.text
+              model=".lastName"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name*"
+              className="form-control"
+              validators={{required}}
+            />
+            <Errors
+              className="text-danger"
+              model=".lastName"
+              show="touched"
+              messages={{
+                required: 'Required. ',
+                minLength: 'Must be greater than 2 characters. ',
+              }}
+            />
+          </Col>
+        </Row>
+        <Row className="form-group" xs={6}>
+          <Col xs={12}>
+            <Control.text
+              type='date'
+              model=".birthDate"
+              id="birthDate"
+              name="birthDate"
+              placeholder="Birth Date*"
+              className="form-control"
+              validators={{required}}
+            />
+            <Errors
+              className="text-danger"
+              model=".birthDate"
+              show="touched"
+              messages={{
+                required: 'Required. ',
+              }}
+            />
+          </Col>
+        </Row>
+        <Row className="form-group" xs={6}>
+          <Col xs={12}>
+            <Control.text
+              type='number'
+              model=".ssn"
+              id="ssn"
+              name="ssn"
+              placeholder="SSN*"
+              className="form-control"
+              validators={{required}}
+            />
+            <Errors
+              className="text-danger"
+              model=".ssn"
+              show="touched"
+              messages={{
+                required: 'Required. ',
+              }}
+            />
+          </Col>
+        </Row>
+        <Row className="form-group" xs={6}>
+          <Col xs={12}>
+            <Control.text
+              model=".userName"
+              id="userName"
+              name="userName"
+              placeholder="Username*"
               className="form-control"
               validators={{required}}
             />
@@ -46,7 +136,6 @@ class Register extends Component {
               messages={{
                 required: 'Required. ',
                 minLength: 'Must be greater than 2 characters. ',
-                maxLength: 'Must be shorter than 16 characters. '
               }}
             />
           </Col>
@@ -107,4 +196,13 @@ class Register extends Component {
     )
 }
 }
-export default Register;
+const mapDispatchToProps = (dispatch) => ({
+  createUser: (values) => {dispatch(createUser(values))},
+});
+
+const mapStateToProps = (dispatch) => ({
+  createUser: (values) => { dispatch (createUser(values))}
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

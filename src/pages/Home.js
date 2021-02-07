@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Control, Form, Errors, actions } from 'react-redux-form';
 import { Button, Col, Row, NavLink } from 'reactstrap';
+import { postUser } from '../redux/users/actions';
+import {Redirect }from 'react-router-dom';
+
 import '../index.css';
 
 const required = (val) => val && val.length;
@@ -13,13 +17,19 @@ class Home extends Component {
 
   handleSubmit(values) {
     this.props.postUser(values.userName, values.password);
-    alert("Registering user.\n" + JSON.stringify(values));
   }
 
   render () {
-  return (
-    <div id="bg" className="container">
 
+  const{ isLoggedIn } = this.props;
+
+  if (isLoggedIn){
+    return(<Redirect to="/account" />)
+  }
+
+
+  return (
+    <div id="bg" className="container"> 
       <h2 id="title">We love our customers and their money</h2>
       <hr />
       <div style={{padding: '5px'}} className="row align-items-center">
@@ -85,4 +95,12 @@ class Home extends Component {
   );
 }}
 
-export default Home;
+const mapStateToProps = (state)=> ({
+    isLoggedIn: state.userStatus.isLoggedIn,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  postUser: (username, password) => { dispatch(postUser(username, password)) }
+}) 
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
