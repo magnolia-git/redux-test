@@ -71,7 +71,7 @@ const MyAccount = () =>  {
   const dispatch = useDispatch();
 
   return (
-    <div id="bg" className="container">
+    <div className="container">
       <hr />
       <div id="maxheight" className="row">
       <div className="col-4">
@@ -94,7 +94,7 @@ const MyAccount = () =>  {
             Saving Account
           </ListGroupItem>
         </Link>
-        
+
         <ListGroupItem disabled style={{backgroundColor: '#50AEEC', color: 'black'}}><PersonCircle /> My Investments</ListGroupItem>
 
         <Link to={`/account/cd-accounts`}>
@@ -125,7 +125,7 @@ const MyAccount = () =>  {
         <ListGroupItem disabled style={{backgroundColor: '#50AEEC', color: 'black'}}><Gear /> Settings</ListGroupItem>
         <ListGroupItem tag="button" action>Profile</ListGroupItem>
         <ListGroupItem tag="button" action>Account Data</ListGroupItem>
-      </ListGroup>      
+      </ListGroup>
       </div>
       <div className="col-8">
       <Switch>
@@ -153,8 +153,8 @@ const MyAccount = () =>  {
         <Route path={`${path}/rollover-ira`}>
           < RolloverIRA />
         </Route>
-        
-        
+
+
       </Switch>
       </div>
       </div>

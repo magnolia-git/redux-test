@@ -24,10 +24,10 @@ class Register extends Component {
     this.props.resetRegisterForm();
   }
 
-  
+
 
   render() {
-     
+
 
   return(
     <div className="container col-6">
@@ -59,6 +59,17 @@ class Register extends Component {
         <Row className="form-group" xs={6}>
           <Col xs={12}>
             <Control.text
+              model=".middleName"
+              id="middleName"
+              name="middleName"
+              placeholder="Middle Name"
+              className="form-control"
+            />
+          </Col>
+        </Row>
+        <Row className="form-group" xs={6}>
+          <Col xs={12}>
+            <Control.text
               model=".lastName"
               id="lastName"
               name="lastName"
@@ -81,16 +92,16 @@ class Register extends Component {
           <Col xs={12}>
             <Control.text
               type='date'
-              model=".birthDate"
-              id="birthDate"
-              name="birthDate"
-              placeholder="Birth Date*"
+              model=".dob"
+              id="dob"
+              name="dob"
+              placeholder="Date of Birth*"
               className="form-control"
               validators={{required}}
             />
             <Errors
               className="text-danger"
-              model=".birthDate"
+              model=".dob"
               show="touched"
               messages={{
                 required: 'Required. ',
@@ -197,12 +208,12 @@ class Register extends Component {
 }
 }
 const mapDispatchToProps = (dispatch) => ({
-  createUser: (values) => {dispatch(createUser(values))},
+  createUser: (values) => {dispatch(createUser(values))}
 });
 
 const mapStateToProps = (dispatch) => ({
   createUser: (values) => { dispatch (createUser(values))}
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

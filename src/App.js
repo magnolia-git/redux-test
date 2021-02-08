@@ -9,6 +9,7 @@ import Team from './pages/Team';
 import Support from './pages/Support';
 import Register from './pages/Register';
 import MyAccount from './pages/MyAccount';
+import {Redirect }from 'react-router-dom';
 import { postSupport, fetchTeam } from './redux/ActionCreators';
 
 import { postUser } from './redux/users/actions';
@@ -63,7 +64,7 @@ class App extends Component {
     <Route path="/about" component={About} />
     <Route path="/team" component={() => <Team team={this.props.team} />} />
     <Route path="/support" component={() => <Support postSupport={this.props.postSupport} resetSupportForm={this.props.resetSupportForm} />} />
-    <Route path="/register" component={() => <Register postUser={this.props.postUser} resetRegisterForm={this.props.resetRegisterForm} />} />
+    <Route path="/register" component={() => <Register resetRegisterForm={this.props.resetRegisterForm} />} />
     <Route path="/account" component={MyAccount} />
     </Switch>
     <Footer />

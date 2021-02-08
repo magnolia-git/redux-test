@@ -16,7 +16,7 @@ class Home extends Component {
   }
 
   handleSubmit(values) {
-    this.props.postUser(values.userName, values.password);
+    this.props.postUser(values);
   }
 
   render () {
@@ -29,7 +29,7 @@ class Home extends Component {
 
 
   return (
-    <div id="bg" className="container"> 
+    <div id="bg" className="container">
       <h2 id="title">We love our customers and their money</h2>
       <hr />
       <div style={{padding: '5px'}} className="row align-items-center">
@@ -100,7 +100,7 @@ const mapStateToProps = (state)=> ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  postUser: (username, password) => { dispatch(postUser(username, password)) }
-}) 
+  postUser: (values) => { dispatch(postUser(values)) }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
