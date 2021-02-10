@@ -40,7 +40,8 @@ export const createUser = (newUser) => (dispatch) => {
 // Logging in as a user
 export const postUser = (returningUser) => (dispatch) => {
 
-    const URL = "http://localhost:8080/api/authenticate";
+//    const URL = "http://localhost:8080/api/authenticate";
+    const URL = "http://192.168.4.11:31337/authenticate";
     return fetch(URL, {
         method: "POST",
         body: JSON.stringify(returningUser),
@@ -55,8 +56,15 @@ export const postUser = (returningUser) => (dispatch) => {
         }
     )
         .then((response) => response.json())
-        .then((response) =>  dispatch(addToken(response)))
-        .then((response) => alert(JSON.stringify(response)))
+        .then((response) => {
+          const jwtToken = response.jwtToken;
+          if (jwtToken !== null) {
+            localStorage.setItem('jwt', jwtToken);
+            dispatch(addToken(response));
+          }
+
+
+        })
         .catch((error) => {
             console.log("Submit user ", error.message);
             alert("User cannot sign in\nError: " + error.message);

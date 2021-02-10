@@ -4,4 +4,4 @@ export const TEAM_FAILED = 'TEAM_FAILED';
 
 export const ADD_SUPPORT = 'ADD_SUPPORT';
 export const SUPPORT_FAILED = 'SUPPORT_FAILED';
-
+export const JWT = 'JWT';

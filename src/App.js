@@ -27,10 +27,10 @@ class App extends Component {
   //   };
   // }
   //
-  // componentDidMount() {
+  componentDidMount() {
   //   this.storeCollector();
-  //   this.props.fetchTeam();
-  // }
+    this.props.fetchTeam();
+  }
   // storeCollector() {
   //   let store=JSON.parse(localStorage.getItem('login'));
   //   if (store && store.login) {
@@ -82,8 +82,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTeam: () => {dispatch(fetchTeam())},
 	resetSupportForm: () => { dispatch(actions.reset('support'))},
   resetRegisterForm: () => { dispatch(actions.reset('user'))},
-  postSupport: (firstname, lastname, email, message) => { dispatch(postSupport(firstname, lastname, email, message))},
-  postUser: (username, password) => { dispatch(postUser(username, password))}
+  postSupport: (firstname, lastname, email, message) => { dispatch(postSupport(firstname, lastname, email, message))}
+
 });
 
 
