@@ -1,9 +1,13 @@
-import { JWT } as Actions from './Actions';
+import * as Actions from './Actions';
 
-export const JWT = (state = null, action) => {
+export const Jwt = (state = {
+  jwt: ''
+}, action) => {
     switch (action.type) {
-        case Actions.JWT:
-            return action.payload;
+        case Actions.ADD_JWT:
+            return {...state, jwt: action.payload};
+        case Actions.DELETE_JWT:
+          return {...state, jwt: ''};
         default:
             return state;
     }

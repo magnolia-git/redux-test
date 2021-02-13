@@ -2,8 +2,9 @@ import React from 'react';
 import '../index.css';
 import { ListGroupItem, ListGroup, Button, Table } from 'reactstrap';
 import { PersonCircle, Gear } from 'react-bootstrap-icons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, connect} from 'react-redux';
 
+//import { getChecking } from '../redux/accounts/actions';
 
 import {
   BrowserRouter as Router,
@@ -13,6 +14,8 @@ import {
   useParams,
   useRouteMatch
 } from "react-router-dom";
+
+//const getCheck = getChecking();
 
 function RenderChecking() {
   return (
@@ -24,7 +27,7 @@ function RenderChecking() {
   );
 }
 
-const CheckingAccount = () => {
+export const CheckingAccount = () => {
 
   return (
     <div className="container">
@@ -37,6 +40,7 @@ const CheckingAccount = () => {
         <div className="col-4">
           <Button block color="danger">Delete Account</Button>
           <Button block color="warning">Delete Transaction</Button>
+          <Button block>alert</Button>
         </div>
       </div>
       <div className="row" >
@@ -67,41 +71,41 @@ const CheckingAccount = () => {
     </div>
   )
 }
-const BusinessAccounts = () => {
+export const BusinessAccounts = () => {
 
   return (
     <>my acccount</>
   )
 }
-const SavingsAccount = () => {
-
-  return (
-    <>my acccount</>
-  )
-}
-
-const CDAccounts = () => {
+export const SavingsAccount = () => {
 
   return (
     <>my acccount</>
   )
 }
 
-const IRAAccount = () => {
+export const CDAccounts = () => {
 
   return (
     <>my acccount</>
   )
 }
 
-const RothIRA = () => {
+export const IRAAccount = () => {
 
   return (
     <>my acccount</>
   )
 }
 
-const RolloverIRA = () => {
+export const RothIRA = () => {
+
+  return (
+    <>my acccount</>
+  )
+}
+
+export const RolloverIRA = () => {
 
   return (
     <>my acccount</>
@@ -111,7 +115,7 @@ const RolloverIRA = () => {
 
 
 
-const MyAccount = () =>  {
+export const MyAccount = () =>  {
 
   let { path, url } = useRouteMatch();
 
@@ -175,38 +179,50 @@ const MyAccount = () =>  {
       </ListGroup>
       </div>
       <div className="col-8">
-      <Switch>
-        {/* <Route exact path={path}>
-          < />
-        </Route> */}
-        <Route path={`${path}/checking-accounts`}>
-          < CheckingAccount />
-        </Route>
-        <Route path={`${path}/dba-accounts`}>
-          < BusinessAccounts />
-        </Route>
-        <Route path={`${path}/savings-accounts`}>
-          < SavingsAccount />
-        </Route>
-        <Route path={`${path}/cd-accounts`}>
-          < CDAccounts />
-        </Route>
-        <Route path={`${path}/ira-accounts`}>
-          < IRAAccount />
-        </Route>
-        <Route path={`${path}/roth-ira`}>
-          < RothIRA />
-        </Route>
-        <Route path={`${path}/rollover-ira`}>
-          < RolloverIRA />
-        </Route>
-
-
-      </Switch>
+      // <Switch>
+      //   {/* <Route exact path={path}>
+      //     < />
+      //   </Route> */}
+      //   <Route path={`${path}/checking-accounts`}>
+      //     < CheckingAccount />
+      //   </Route>
+      //   <Route path={`${path}/dba-accounts`}>
+      //     < BusinessAccounts />
+      //   </Route>
+      //   <Route path={`${path}/savings-accounts`}>
+      //     < SavingsAccount />
+      //   </Route>
+      //   <Route path={`${path}/cd-accounts`}>
+      //     < CDAccounts />
+      //   </Route>
+      //   <Route path={`${path}/ira-accounts`}>
+      //     < IRAAccount />
+      //   </Route>
+      //   <Route path={`${path}/roth-ira`}>
+      //     < RothIRA />
+      //   </Route>
+      //   <Route path={`${path}/rollover-ira`}>
+      //     < RolloverIRA />
+      //   </Route>
+      //
+      //
+      // </Switch>
       </div>
       </div>
     </div>
   );
 }
 
+// const mapDispatchToProps = (dispatch) => ({
+//   getChecking: (values) => {dispatch(getChecking(values))}
+// });
+//
+// const mapStateToProps = (dispatch) => ({
+//   getChecking: (values) => { dispatch (getChecking(values))},
+//   user: dispatch.userStatus.userName,
+//   token: dispatch.userStatus.jwt
+// });
+
+
+//export default connect(mapStateToProps, mapDispatchToProps)(MyAccount);
 export default MyAccount;

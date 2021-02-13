@@ -1,10 +1,10 @@
 import { ADD_TEAM, TEAM_LOADING, TEAM_FAILED } from './Actions';
 
-export function team(state = {
+export const Team = (state = {
   isLoading: false,
   errMess: null,
   team: []
-}, action) {
+}, action) => {
 
   switch(action.type) {
 

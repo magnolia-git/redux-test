@@ -1,29 +1,62 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../index.css';
 import { Control, Form, Errors, actions } from 'react-redux-form';
 import { Button, Label, Col, Row } from 'reactstrap';
-import { createUser } from '../redux/users/actions';
+import { addUser } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
-import {Redirect }from 'react-router-dom';
+import { Redirect, withRouter }from 'react-router-dom';
+import { baseLocal } from '../shared/baseUrl';
+import { postUser } from '../redux/ActionCreators';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
+const mapDispatchToProps = (dispatch) => ({
+  addUser: () => dispatch(addUser())
+});
+
+
 class Register extends Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      userName: '',
+      password: '',
+      email: '',
+      accountOpened: new Date(),
+      dob: '',
+      ssn: null
+    }
+//    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(values) {
-    this.props.createUser(values);
-    console.log("Current State is: " + JSON.stringify(values));
-    alert("Registering user.\n" + JSON.stringify(values));
-    this.props.resetRegisterForm();
-  }
+  handleSubmit = async (event) => {
+//        event.preventDefault()
 
+        const data = this.state;
+        alert(JSON.stringify(data));
+        const exists = await axios.get(baseLocal + 'Users' + '/' + data.userName + '/valid');
+        if(exists.data === true){
+            alert("Username taken!");
+        } else {
+            data.dob = new Date(data.dob);
+            axios.post(baseLocal + 'Users', data);
+            alert(JSON.stringify(data));
+        }
+    }
+
+    handleInputChange = (event) => {
+        event.preventDefault()
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
 
 
   render() {
@@ -34,7 +67,7 @@ class Register extends Component {
       <h2 id="title">One Step Closer to a Merit America</h2>
       <hr />
       <div id="inputBox">
-      <Form model="user" onSubmit={(values) => this.handleSubmit(values)}>
+      <Form model="register" onSubmit={this.handleSubmit}>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
             <Control.text
@@ -44,6 +77,7 @@ class Register extends Component {
               placeholder="First Name*"
               className="form-control"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -64,6 +98,7 @@ class Register extends Component {
               name="middleName"
               placeholder="Middle Name"
               className="form-control"
+              onChange={this.handleInputChange}
             />
           </Col>
         </Row>
@@ -76,6 +111,7 @@ class Register extends Component {
               placeholder="Last Name*"
               className="form-control"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -98,6 +134,7 @@ class Register extends Component {
               placeholder="Date of Birth*"
               className="form-control"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -119,6 +156,7 @@ class Register extends Component {
               placeholder="SSN*"
               className="form-control"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -139,6 +177,7 @@ class Register extends Component {
               placeholder="Username*"
               className="form-control"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -160,6 +199,7 @@ class Register extends Component {
               placeholder="Email*"
               className="form-control"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -182,6 +222,7 @@ class Register extends Component {
               name="password"
               placeholder="Password*"
               validators={{required}}
+              onChange={this.handleInputChange}
             />
             <Errors
               className="text-danger"
@@ -205,15 +246,7 @@ class Register extends Component {
       </div>
     </div>
     )
+  }
 }
-}
-const mapDispatchToProps = (dispatch) => ({
-  createUser: (values) => {dispatch(createUser(values))}
-});
 
-const mapStateToProps = (dispatch) => ({
-  createUser: (values) => { dispatch (createUser(values))}
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default withRouter(connect(mapDispatchToProps)(Register));
