@@ -2,6 +2,8 @@ import * as Actions from './Actions';
 import UserServices from '../services/UserServices';
 import TeamServices from '../services/TeamServices';
 
+// Action Creators for the team page... ////////////////////////////////////////
+
 export const fetchTeam = () => (dispatch) => {
   dispatch(teamLoading(true));
 
@@ -24,13 +26,14 @@ export const teamLoading = () => ({
   type: Actions.TEAM_LOADING
 });
 
+// Action Creators for the user... /////////////////////////////////////////////
 
 export const fetchUser = () => (dispatch) => {
     dispatch(userLoading(true));
 
     UserServices.getUser()
-            .then((response) => dispatch(addUser(response.data)))
-            .catch(error => dispatch(userFailed(error.message)))
+    .then((response) => dispatch(addUser(response.data)))
+    .catch(error => dispatch(userFailed(error.message)))
 
 }
 
@@ -47,6 +50,8 @@ export const addUser = (user) => ({
 export const userLoading = () => ({
     type: Actions.USER_LOADING
 })
+
+// Action Creators for the jwt token... ////////////////////////////////////////
 
 export const addJWT = (jwt) => ({
   type: Actions.ADD_JWT,

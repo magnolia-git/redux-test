@@ -30,7 +30,7 @@ class Header extends Component {
                 <Link to="/support">Support</Link>
             </div>
             <div className="col">
-                <Link to="/logout">Logout</Link>
+                <Link to="/account">Account</Link>
             </div>
 
 

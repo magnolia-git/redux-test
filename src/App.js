@@ -30,38 +30,27 @@ const mapDispatchToProps = (dispatch) => ({
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-
-  }
-
-
   componentDidMount() {
     this.props.fetchTeam();
   }
 
-
-
   render() {
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={() => <Home addUser={this.props.addUser} />} />
+          <Route path="/about" component={About} />
+          <Route path="/team" component={() => <Team team={this.props.team} />} />
+          <Route path="/support" component={() => <Support />} />
+          <Route path="/register" component={() => <Register user={this.props.user} jwt={this.props.jwt} />} />
+          <Route path="/account" component={() => <MyAccount user={this.props.user} jwt={this.props.jwt} />} />
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
 
-
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={() => <Home addUser={this.props.addUser} />} />
-        <Route path="/about" component={About} />
-        <Route path="/team" component={() => <Team team={this.props.team} />} />
-        <Route path="/support" component={() => <Support />} />
-        <Route path="/register" component={() => <Register user={this.props.user} jwt={this.props.jwt} />} />
-        <Route path="/account" component={MyAccount} />
-      </Switch>
-      <Footer />
-    </div>
-  );
-}}
-
-
-
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

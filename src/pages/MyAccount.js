@@ -1,8 +1,11 @@
 import React from 'react';
 import '../index.css';
-import { ListGroupItem, ListGroup, Button, Table } from 'reactstrap';
+import { ListGroupItem, ListGroup, Button, Table, Card, CardTitle, CardBody } from 'reactstrap';
+//import { Link } from 'react-router-dom';
 import { PersonCircle, Gear } from 'react-bootstrap-icons';
 import {useDispatch, connect} from 'react-redux';
+import Accounts from '../components/AccountComponent';
+
 
 //import { getChecking } from '../redux/accounts/actions';
 
@@ -14,6 +17,10 @@ import {
   useParams,
   useRouteMatch
 } from "react-router-dom";
+
+
+
+
 
 //const getCheck = getChecking();
 
@@ -27,7 +34,7 @@ function RenderChecking() {
   );
 }
 
-export const CheckingAccount = () => {
+export const CheckingAccount = (store) => {
 
   return (
     <div className="container">
@@ -115,7 +122,11 @@ export const RolloverIRA = () => {
 
 
 
-export const MyAccount = () =>  {
+function MyAccount(props) {
+
+  const user = props.user;
+
+
 
   let { path, url } = useRouteMatch();
 
@@ -179,34 +190,31 @@ export const MyAccount = () =>  {
       </ListGroup>
       </div>
       <div className="col-8">
-      // <Switch>
-      //   {/* <Route exact path={path}>
-      //     < />
-      //   </Route> */}
-      //   <Route path={`${path}/checking-accounts`}>
-      //     < CheckingAccount />
-      //   </Route>
-      //   <Route path={`${path}/dba-accounts`}>
-      //     < BusinessAccounts />
-      //   </Route>
-      //   <Route path={`${path}/savings-accounts`}>
-      //     < SavingsAccount />
-      //   </Route>
-      //   <Route path={`${path}/cd-accounts`}>
-      //     < CDAccounts />
-      //   </Route>
-      //   <Route path={`${path}/ira-accounts`}>
-      //     < IRAAccount />
-      //   </Route>
-      //   <Route path={`${path}/roth-ira`}>
-      //     < RothIRA />
-      //   </Route>
-      //   <Route path={`${path}/rollover-ira`}>
-      //     < RolloverIRA />
-      //   </Route>
-      //
-      //
-      // </Switch>
+      <Switch>
+        {/* <Route exact path={path}>
+          < />
+        </Route> */}
+        <Route path={`${path}/checking-accounts`} component={() => <Accounts accountType="Checking Accounts" accounts={user.checkingAccounts} />} />
+
+        <Route path={`${path}/dba-accounts`} component={() => <Accounts accountType="Business Accounts" accounts={user.dbaAccounts} />} />
+
+        <Route path={`${path}/savings-accounts`} component={() => <Accounts accountType="Savings Account" accounts={user.savingsAccount} />} />
+
+        <Route path={`${path}/cd-accounts`}>
+          < CDAccounts />
+        </Route>
+        <Route path={`${path}/ira-accounts`}>
+          < IRAAccount />
+        </Route>
+        <Route path={`${path}/roth-ira`}>
+          < RothIRA />
+        </Route>
+        <Route path={`${path}/rollover-ira`}>
+          < RolloverIRA />
+        </Route>
+
+
+      </Switch>
       </div>
       </div>
     </div>
@@ -224,5 +232,5 @@ export const MyAccount = () =>  {
 // });
 
 
-//export default connect(mapStateToProps, mapDispatchToProps)(MyAccount);
+//export default connect(mapStateToProps)(MyAccount);
 export default MyAccount;

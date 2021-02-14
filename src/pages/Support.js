@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../index.css';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Form, Errors } from 'react-redux-form';
 import { Button, Col, Row } from 'reactstrap';
 
 const required = (val) => val && val.length;
@@ -37,7 +37,7 @@ class Support extends Component {
       <Form model="support" onSubmit={(values) => this.handleSubmit(values)}>
         <Row className="form-group">
           <Col xs={6}>
-            <Control.text
+            <input type="text"
               model=".firstname"
               id="firstname"
               name="firstname"
@@ -57,7 +57,7 @@ class Support extends Component {
             />
           </Col>
           <Col xs={6}>
-            <Control.text
+            <input type="text"
               model=".lastname"
               id="lastname"
               name="lastname"
@@ -79,7 +79,7 @@ class Support extends Component {
         </Row>
         <Row className="form-group">
           <Col md={12}>
-            <Control.text
+            <input type="text"
               model=".email"
               id="email"
               name="email"
@@ -100,7 +100,7 @@ class Support extends Component {
         </Row>
         <Row className="form-group">
           <Col md={12}>
-            <Control.textarea
+            <input type="textarea"
               model=".message"
               id="message"
               className="form-control"

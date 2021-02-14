@@ -2,12 +2,10 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addJWT, addUser } from '../redux/ActionCreators';
-import { Form, actions } from 'react-redux-form';
+import { Form } from 'react-redux-form';
 import { Button, Col, Row } from 'reactstrap';
 import { baseLocal } from '../shared/baseUrl';
 import {Redirect, withRouter, Link }from 'react-router-dom';
-
-const required = (val) => val && val.length;
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: () => dispatch(addUser()),

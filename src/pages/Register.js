@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../index.css';
-import { Control, Form, Errors, actions } from 'react-redux-form';
-import { Button, Label, Col, Row } from 'reactstrap';
+import { Form, Errors } from 'react-redux-form';
+import { Button, Col, Row } from 'reactstrap';
 import { addUser } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 import { Redirect, withRouter }from 'react-router-dom';
 import { baseLocal } from '../shared/baseUrl';
-import { postUser } from '../redux/ActionCreators';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -18,6 +17,11 @@ const mapDispatchToProps = (dispatch) => ({
   addUser: () => dispatch(addUser())
 });
 
+function returnHome() {
+  return(
+    <Redirect to={"/"} />
+  );
+}
 
 class Register extends Component {
   constructor(props) {
@@ -41,13 +45,14 @@ class Register extends Component {
 
         const data = this.state;
         alert(JSON.stringify(data));
-        const exists = await axios.get(baseLocal + 'Users' + '/' + data.userName + '/valid');
+        const exists = await axios.get(baseLocal + 'Users/' + data.userName + '/valid');
         if(exists.data === true){
             alert("Username taken!");
         } else {
             data.dob = new Date(data.dob);
             axios.post(baseLocal + 'Users', data);
-            alert(JSON.stringify(data));
+            returnHome();
+//            alert(JSON.stringify(data));
         }
     }
 
@@ -57,6 +62,8 @@ class Register extends Component {
             [event.target.name]: event.target.value
         })
     }
+
+
 
 
   render() {
@@ -70,7 +77,7 @@ class Register extends Component {
       <Form model="register" onSubmit={this.handleSubmit}>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
+            <input type="text"
               model=".firstName"
               id="firstName"
               name="firstName"
@@ -92,7 +99,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
+            <input type="text"
               model=".middleName"
               id="middleName"
               name="middleName"
@@ -104,7 +111,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
+            <input type="text"
               model=".lastName"
               id="lastName"
               name="lastName"
@@ -126,8 +133,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
-              type='date'
+            <input type='date'
               model=".dob"
               id="dob"
               name="dob"
@@ -148,8 +154,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
-              type='number'
+            <input type="number"
               model=".ssn"
               id="ssn"
               name="ssn"
@@ -170,7 +175,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
+            <input type="text"
               model=".userName"
               id="userName"
               name="userName"
@@ -192,7 +197,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group" xs={6}>
           <Col xs={12}>
-            <Control.text
+            <input type="text"
               model=".email"
               id="email"
               name="email"
@@ -215,7 +220,7 @@ class Register extends Component {
         </Row>
         <Row className="form-group">
           <Col xs={12}>
-            <Control.password
+            <input type="password"
               model=".password"
               id="password"
               className="form-control"
