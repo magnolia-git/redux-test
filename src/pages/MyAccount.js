@@ -36,6 +36,29 @@ function RenderChecking() {
 
 export const CheckingAccount = (store) => {
 
+}
+export const BusinessAccounts = () => {
+
+  return (
+    <>my acccount</>
+  )
+}
+export const SavingsAccount = () => {
+
+  return (
+    <>my acccount</>
+  )
+}
+
+export const CDAccounts = () => {
+
+  return (
+    <>my acccount</>
+  )
+}
+
+export const IRAAccount = (store) => {
+
   return (
     <div className="container">
       <h3> </h3>
@@ -46,12 +69,13 @@ export const CheckingAccount = (store) => {
         </div>
         <div className="col-4">
           <Button block color="danger">Delete Account</Button>
+          <Button block color="primary">Create Transaction</Button>
           <Button block color="warning">Delete Transaction</Button>
-          <Button block>alert</Button>
         </div>
       </div>
       <div className="row" >
         <div className="col">
+        <hr />
         <Table striped dark>
     <thead>
       <tr>
@@ -76,32 +100,6 @@ export const CheckingAccount = (store) => {
         </div>
       </div>
     </div>
-  )
-}
-export const BusinessAccounts = () => {
-
-  return (
-    <>my acccount</>
-  )
-}
-export const SavingsAccount = () => {
-
-  return (
-    <>my acccount</>
-  )
-}
-
-export const CDAccounts = () => {
-
-  return (
-    <>my acccount</>
-  )
-}
-
-export const IRAAccount = () => {
-
-  return (
-    <>my acccount</>
   )
 }
 
@@ -165,7 +163,7 @@ function MyAccount(props) {
             </ListGroupItem>
         </Link>
 
-        <Link to={`/account/ira`}>
+        <Link to={`/account/ira-accounts`}>
           <ListGroupItem tag="button" action>
             IRA Account
             </ListGroupItem>
@@ -174,14 +172,14 @@ function MyAccount(props) {
         <Link to={`/account/roth-ira`}>
           <ListGroupItem tag="button" action>
             Roth IRA
-            </ListGroupItem>
-
-            <Link to={`/account/rollover-ira`}>
+          </ListGroupItem>
+        </Link>
+        <Link to={`/account/rollover-ira`}>
           <ListGroupItem tag="button" action>
             Rollover IRA
-            </ListGroupItem>
+          </ListGroupItem>
         </Link>
-        </Link>
+
         {/* <ListGroupItem tag="button" action>Account</ListGroupItem> */}
         <ListGroupItem tag="button" action>CD Rates</ListGroupItem>
         <ListGroupItem disabled style={{backgroundColor: '#50AEEC', color: 'black'}}><Gear /> Settings</ListGroupItem>
@@ -196,9 +194,9 @@ function MyAccount(props) {
         </Route> */}
         <Route path={`${path}/checking-accounts`} component={() => <Accounts accountType="Checking Accounts" accounts={user.checkingAccounts} />} />
 
-        <Route path={`${path}/dba-accounts`} component={() => <Accounts accountType="Business Accounts" accounts={user.dbaAccounts} />} />
+        <Route path={`${path}/dba-accounts`} component={() => <Accounts accountType="Business Accounts" accounts={user.dbaCheckings} />} />
 
-        <Route path={`${path}/savings-accounts`} component={() => <Accounts accountType="Savings Account" accounts={user.savingsAccount} />} />
+        <Route path={`${path}/savings-accounts`} component={() => <Accounts accountType="Savings Account" accounts={user.savingsAccounts} />} />
 
         <Route path={`${path}/cd-accounts`}>
           < CDAccounts />

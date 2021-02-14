@@ -3,30 +3,37 @@ import * as Actions from './Actions';
 export const User = (state = {
     isLoading: true,
     errMess: null,
+    id: null,
     firstName: '',
     middleName: '',
     lastName: '',
-    userName: '',
-    email: '',
-    dob: '',
-    ssn: null,
-    checkingAccounts: [],
-    savingsAccount: null,
-    personalCheckingAccount: null,
-    dbaAccounts: [],
-    cdAccounts: [],
-    regularIra: null,
-    rolloverIra: null,
-    rothIra: null,
-    transactions: []
+    birthDate: '',
+    rollOverIRA: null,
+    rothIRA: null,
+    ira: null,
+    dbaCheckings: [],
+    checkingAccounts: null,
+    savingsAccounts: null,
+    cDAccounts: [],
+    accountHoldersContactDetails: null,
+    user: null,
+    allAccounts: [],
+    ssn: '',
+    combinedBalance: null,
+    numberOfCDAccounts: null,
+    checkingBalance: null,
+    savingsBalance: null,
+    cdbalance: null
 }, action) => {
     switch (action.type) {
         case Actions.ADD_USER:
             return { ...state, isLoading: false, errMess: null, firstName: action.payload.firstName,
-                middleName: action.payload.middleName, lastName: action.payload.lastName, userName: action.payload.userName, email: action.payload.email,
-                dob: action.payload.dob, ssn: action.payload.ssn, checkingAccounts: action.payload.checkingAccounts, savingsAccount: action.payload.savingsAccount,
-                personalCheckingAccount: action.payload.personalCheckingAccount, dbaAccounts: action.payload.dbaAccounts, cdAccounts: action.payload.cdAccounts,
-                regularIra: action.payload.regularIra, rolloverIra: action.payload.rolloverIra, rothIra: action.payload.rothIra, transactions: action.payload.transactions}
+                middleName: action.payload.middleName, lastName: action.payload.lastName, birthDate: action.payload.birthDate, rollOverIRA: action.payload.rollOverIRA,
+                rothIRA: action.payload.rothIRA, ira: action.payload.ira, dbaCheckings: action.payload.dbaCheckings, checkingAccounts: action.payload.checkingAccounts,
+                savingsAccounts: action.payload.savingsAccounts, cDAccounts: action.payload.cDAccounts, accountHoldersContactDetails: action.payload.accountHoldersContactDetails,
+                user: action.payload.user, allAccounts: action.payload.allAccounts, ssn: action.payload.ssn, combinedBalance: action.payload.combinedBalance,
+                numberOfCDAccounts: action.payload.numberOfCDAccounts, checkingBalance: action.payload.checkingBalance, savingsBalance: action.payload.savingsBalance,
+                cdbalance: action.payload.cdbalance}
 
         case Actions.USER_LOADING:
             return { ...state, isLoading: true, errMess: null, accounts: [], firstName: '',

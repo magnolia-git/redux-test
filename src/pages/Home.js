@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addJWT, addUser } from '../redux/ActionCreators';
 import { Form } from 'react-redux-form';
 import { Button, Col, Row } from 'reactstrap';
-import { baseLocal } from '../shared/baseUrl';
+import { baseUrlAWS } from '../shared/baseUrl';
 import {Redirect, withRouter, Link }from 'react-router-dom';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -29,9 +29,10 @@ class Home extends Component {
 //       event.preventDefault();
        const user = this.state.userName;
        const pass = this.state.password;
-       const jwt = await axios.post(baseLocal + 'authenticate', { userName: user, password: pass });
-       this.props.dispatch(addJWT(jwt.data.jwtToken));
-       axios.get(baseLocal + 'Users/' + user, { headers: {"Authorization" : `Bearer ${jwt.data.jwtToken}`}})
+       const jwt = await axios.post(baseUrlAWS + 'api/authenticate', { userName: user, password: pass });
+       alert(JSON.stringify(jwt.data.jwt));
+       this.props.dispatch(addJWT(jwt.data.jwt));
+       axios.get(baseUrlAWS + 'api/Me', { headers: {"Authorization" : `Bearer ${jwt.data.jwt}`}})
            .then((response) => this.props.dispatch(addUser(response.data)));
     }
 
@@ -41,6 +42,8 @@ class Home extends Component {
            [event.target.name]: event.target.value
        });
    }
+
+
 
   render () {
 
@@ -61,9 +64,9 @@ class Home extends Component {
 
           <Form model="signin" onSubmit={this.handleSubmit}>
 
-          <input type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange}/>
+          <input type="text" model=".userName" name="userName" value={this.state.userName} onChange={this.handleInputChange}/>
 
-          <input type="password" name= "password" value={this.state.password} onChange={this.handleInputChange}/>
+          <input type="password" model=".password" name= "password" value={this.state.password} onChange={this.handleInputChange}/>
 
             <Row className="form-group">
               <Col xs={12}>

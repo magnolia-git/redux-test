@@ -1,31 +1,31 @@
 import axios from 'axios';
-import { baseLocal } from '../shared/baseUrl';
+import { baseUrlAWS } from '../shared/baseUrl';
 
 class UserServices {
 
     getUser(){
-        return axios.get(baseLocal + 'Users/');
+        return axios.get(baseUrlAWS + 'api/Me');
     }
 
-    getUserById(userName){
-        return axios.get(baseLocal + 'Users/' + userName);
-    }
+    // getUserById(userName){
+    //     return axios.get(baseLocal + 'Users/' + userName);
+    // }
 
     postUser(user){
-        return axios.post(baseLocal + 'Users', user);
+        return axios.post(baseUrlAWS + 'api/authenticate/createUser', user);
     }
 
-    postAccount(accountType, userName, data, jwt){
-        return axios.post(baseLocal + 'Users/' + userName + '/' + accountType, { headers: {"Authorization" : `Bearer ${jwt}`}}, data);
-    }
+    // postAccount(accountType, userName, data, jwt){
+    //     return axios.post(baseUrlAWS + 'Users/' + userName + '/' + accountType, { headers: {"Authorization" : `Bearer ${jwt}`}}, data);
+    // }
 
-    deleteUser(userName){
-        axios.delete(baseLocal + 'Users/' + userName);
-    }
+    // deleteUser(userName){
+    //     axios.delete(baseUrlAWS + 'Users/' + userName);
+    // }
 
-    deleteAccount(userName, accoutType, id, closingTo){
-        return axios.patch(baseLocal + 'Users/' + userName + '/' + accoutType + '/' + id + '/' + closingTo);
-    }
+    // deleteAccount(userName, accoutType, id, closingTo){
+    //     return axios.patch(baseUrlAWS + 'Users/' + userName + '/' + accoutType + '/' + id + '/' + closingTo);
+    // }
 }
 
 export default new UserServices();

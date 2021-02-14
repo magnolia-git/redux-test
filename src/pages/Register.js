@@ -6,7 +6,7 @@ import { Button, Col, Row } from 'reactstrap';
 import { addUser } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 import { Redirect, withRouter }from 'react-router-dom';
-import { baseLocal } from '../shared/baseUrl';
+import { baseUrlAWS } from '../shared/baseUrl';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -27,14 +27,14 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userName: '',
+      password: '',
       firstName: '',
       middleName: '',
       lastName: '',
-      userName: '',
-      password: '',
       email: '',
       accountOpened: new Date(),
-      dob: '',
+      birthDate: '',
       ssn: null
     }
 //    this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,15 +45,12 @@ class Register extends Component {
 
         const data = this.state;
         alert(JSON.stringify(data));
-        const exists = await axios.get(baseLocal + 'Users/' + data.userName + '/valid');
-        if(exists.data === true){
-            alert("Username taken!");
-        } else {
-            data.dob = new Date(data.dob);
-            axios.post(baseLocal + 'Users', data);
+
+            data.dob = new Date(data.birthDate);
+            axios.post(baseUrlAWS + 'api/authenticate/createUser', data);
             returnHome();
 //            alert(JSON.stringify(data));
-        }
+
     }
 
     handleInputChange = (event) => {
@@ -134,9 +131,9 @@ class Register extends Component {
         <Row className="form-group" xs={6}>
           <Col xs={12}>
             <input type='date'
-              model=".dob"
-              id="dob"
-              name="dob"
+              model=".birthDate"
+              id="birthDate"
+              name="birthDate"
               placeholder="Date of Birth*"
               className="form-control"
               validators={{required}}

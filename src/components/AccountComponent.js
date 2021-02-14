@@ -1,72 +1,125 @@
 import React from 'react';
-import { Media, Row } from 'reactstrap';
+import { Media, Row, Table, Button } from 'reactstrap';
+import { format } from 'date-fns';
 
 
 function RenderAccountInfo({account}){
-
+  let date = new Date(account.openedOn);
+  let formattedDate = format(date, "MMMM do, yyyy h:mma");
   return (
-    <div className="col">
-      <Media id="smoothBorder">
-        <Media body className="ml-2">
-          <Media heading>Account ID: {account.id}</Media>
-          <p>Balance: ${account.balance}</p>
-          <p>Opened on: {account.bankAccountOpened}</p>
-        </Media>
-      </Media>
+    <div>
+      <div className="row">
+        <div className="col-6">
+          <Media>
+            <Media body className="ml-2">
+              <Media heading>Account #{account.id}</Media>
+              <p>Balance: ${account.balance.toLocaleString()}</p>
+              <p>Opened on: {formattedDate}</p>
+            </Media>
+          </Media>
+        </div>
+        <div className="col-6">
+          <Button block color="danger">Delete Account</Button>
+          <p />
+          <Button className="col-12 col-md-6" color="primary">Create Transaction</Button>
+          <Button className="col-12 col-md-6" color="warning">Delete Transaction</Button>
+        </div>
+      </div>
+      <div className="row">
+      <p />
+      </div>
+          <Table striped dark>
+      <thead>
+        <tr>
+          <th>Transaction</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mac Dondald's</td>
+          <td>-$652.00</td>
+          <td>10/10/2019</td>
+        </tr>
+        <tr>
+          <td>What a Burger</td>
+          <td>-$889.99</td>
+          <td>12/10/2020</td>
+        </tr>
+      </tbody>
+    </Table>
+    <hr />
     </div>
   );
 }
 
 function Accounts(props) {
-  if(Array.isArray(props.accounts)){
-    let sum = 0;
-    props.accounts.map((account) => {
-      sum += parseInt(account.balance);
-    });
-    const summary = props.accounts.map((account) => {
-    return (
-      <div key={account.id}>
-        <RenderAccountInfo account={account} accountType={props.accountType} />
-      </div>
-    );
-  });
+  if(props.accounts !== null) {
+    if(Array.isArray(props.accounts)){
+      let sum = 0;
+      props.accounts.map((account) => {
+        sum += parseInt(account.balance);
+      });
+      const summary = props.accounts.map((account) => {
+      return (
 
-  return (
-    <div className="container">
+          <RenderAccountInfo key={account.id} account={account} accountType={props.accountType} />
+
+      );
+    });
+
+    return (
       <div>
-        <h2 id="title">{props.accountType}</h2>
-        <hr />
-        <h2>Total Balance: ${sum}</h2>
-      </div>
-      <Media list>
-        <Row lg="2" md="1">
-          {summary}
-        </Row>
-      </Media>
-    </div>
-  );
-} else {
-    return(
-      <div className="container">
         <div>
           <h2 id="title">{props.accountType}</h2>
           <hr />
+          <h2>Total Balance: ${sum.toLocaleString()}</h2>
+          <hr />
         </div>
-        <Media>
-          <Row lg="2" md="1">
-            <div className="col">
-              <Media id="smoothBorder">
-                <Media body className="ml-2">
-                  <Media heading>Account ID: {props.accounts.id}</Media>
-                  <p>Balance: ${props.accounts.balance}</p>
-                  <p>Opened on: {props.accounts.bankAccountOpened}</p>
-                </Media>
-              </Media>
-            </div>
-          </Row>
+        <Media list>
+
+            {summary}
+
         </Media>
       </div>
     );
+  } else {
+    let date = new Date(props.accounts.openedOn);
+    let formattedDate = format(date, "MMMM do, yyyy H:mma");
+      return(
+        <div>
+          <div>
+            <h2 id="title">{props.accountType}</h2>
+            <hr />
+            <h2>Total Balance: ${props.accounts.balance}</h2>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <Media>
+                <Media body className="ml-2">
+                  <Media heading>Account #{props.accounts.id}</Media>
+                  <p>Balance: ${props.accounts.balance.toLocaleString()}</p>
+                  <p>Opened on: {formattedDate}</p>
+                </Media>
+              </Media>
+            </div>
+            <div className="col-6">
+              <Button block color="danger">Delete Account</Button>
+              <p />
+              <Button className="col-12 col-md-6" color="primary">Create Transaction</Button>
+              <Button className="col-12 col-md-6" color="warning">Delete Transaction</Button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  } else {
+    return(
+      <div>
+        <h1>No account</h1>
+      </div>
+    )
   }
 }
 
