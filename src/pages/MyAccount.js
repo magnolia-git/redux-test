@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { baseUrlAWS } from '../shared/baseUrl';
 import '../index.css';
-import { ListGroupItem, ListGroup, Button, Table, Card, CardTitle, CardBody } from 'reactstrap';
+import { ListGroupItem, ListGroup, Button, Table, Modal, ModalHeader, ModalBody, ModalFooter, Form, Label, Input } from 'reactstrap';
 //import { Link } from 'react-router-dom';
-import { PersonCircle, Gear } from 'react-bootstrap-icons';
+import { PersonCircle, Gear, ArrowClockwise } from 'react-bootstrap-icons';
 import {useDispatch, connect} from 'react-redux';
 import Accounts from '../components/AccountComponent';
+import { addUser } from '../redux/ActionCreators';
+import AccountModal from '../components/AccountModal';
 
 
 //import { getChecking } from '../redux/accounts/actions';
@@ -18,23 +22,7 @@ import {
   useRouteMatch
 } from "react-router-dom";
 
-
-
-
-
-//const getCheck = getChecking();
-
-function RenderChecking() {
-  return (
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  );
-}
-
-export const CheckingAccount = (store) => {
+export const CheckingAccount = () => {
 
 }
 export const BusinessAccounts = () => {
@@ -122,21 +110,34 @@ export const RolloverIRA = () => {
 
 function MyAccount(props) {
 
+  const data = {
+
+  }
+
   const user = props.user;
+  const jwt = props.jwt.jwt;
 
+  const reloadUser = async (event) => {
+//    alert(baseUrlAWS + 'api/Me ' + `Bearer ${props.jwt.jwt}`);
+    axios.get(baseUrlAWS + 'api/Me', { headers: {"Authorization" : `Bearer ${jwt}`}})
+    .then((response) => props.dispatch(addUser(response.data)));
 
+  }
 
   let { path, url } = useRouteMatch();
 
-  const dispatch = useDispatch();
-
   return (
     <div className="container">
+      <Button onClick={reloadUser}><ArrowClockwise /> Reload</Button>
       <hr />
       <div id="maxheight" className="row">
-      <div className="col-4">
       <ListGroup>
-        <ListGroupItem disabled style={{backgroundColor: '#50AEEC', color: 'black'}}><PersonCircle /> My Accounts</ListGroupItem>
+      <AccountModal jwt={props.jwt} user={props.user} />
+      <p/>
+        <ListGroupItem style={{backgroundColor: '#50AEEC', color: 'black', textAlign: 'center'}}>
+          <PersonCircle />
+          <> My Accounts </>
+        </ListGroupItem>
         <Link to={`/account/checking-accounts`}>
           <ListGroupItem tag="button" action>
             Checking Account
@@ -155,7 +156,11 @@ function MyAccount(props) {
           </ListGroupItem>
         </Link>
 
-        <ListGroupItem disabled style={{backgroundColor: '#50AEEC', color: 'black'}}><PersonCircle /> My Investments</ListGroupItem>
+        <ListGroupItem style={{backgroundColor: '#50AEEC', color: 'black', textAlign: 'center'}}>
+          <PersonCircle />
+          <> My Investments </>
+
+        </ListGroupItem>
 
         <Link to={`/account/cd-accounts`}>
           <ListGroupItem tag="button" action>
@@ -186,31 +191,25 @@ function MyAccount(props) {
         <ListGroupItem tag="button" action>Profile</ListGroupItem>
         <ListGroupItem tag="button" action>Account Data</ListGroupItem>
       </ListGroup>
-      </div>
+
       <div className="col-8">
       <Switch>
         {/* <Route exact path={path}>
           < />
         </Route> */}
-        <Route path={`${path}/checking-accounts`} component={() => <Accounts accountType="Checking Accounts" accounts={user.checkingAccounts} />} />
+        <Route path={`${path}/checking-accounts`} component={() => <Accounts user={props.user} transactionAcctType="checking" accountType="Personal Checking Account" jwt={jwt} accounts={user.checkingAccounts} />} />
 
-        <Route path={`${path}/dba-accounts`} component={() => <Accounts accountType="Business Accounts" accounts={user.dbaCheckings} />} />
+        <Route path={`${path}/dba-accounts`} component={() => <Accounts user={props.user} transactionAcctType="dbaChecking" accountType="Business Accounts" jwt={jwt} accounts={user.dbaCheckings} />} />
 
-        <Route path={`${path}/savings-accounts`} component={() => <Accounts accountType="Savings Account" accounts={user.savingsAccounts} />} />
+        <Route path={`${path}/savings-accounts`} component={() => <Accounts user={props.user} transactionAcctType="savings" accountType="Savings Account" jwt={jwt} accounts={user.savingsAccounts} />} />
 
-        <Route path={`${path}/cd-accounts`}>
-          < CDAccounts />
-        </Route>
-        <Route path={`${path}/ira-accounts`}>
-          < IRAAccount />
-        </Route>
-        <Route path={`${path}/roth-ira`}>
-          < RothIRA />
-        </Route>
-        <Route path={`${path}/rollover-ira`}>
-          < RolloverIRA />
-        </Route>
+        <Route path={`${path}/cd-accounts`} component={() => <Accounts user={props.user} transactionAcctType="cdAccount" accountType="CD Account" jwt={jwt} accounts={user.cDAccounts} />} />
 
+        <Route path={`${path}/ira-accounts`} component={() => <Accounts user={props.user} transactionAcctType="ira" accountType="IRA Account" jwt={jwt} accounts={user.ira} />} />
+
+        <Route path={`${path}/roth-ira`} component={() => <Accounts user={props.user} transactionAcctType="rothIRA" accountType="Roth IRA Account" jwt={jwt} accounts={user.rothIRA} />} />
+
+        <Route path={`${path}/rollover-ira`} component={() => <Accounts user={props.user} transactionAcctType="rolloverIRA" accountType="Rollover IRA Account" jwt={jwt} accounts={user.rollOverIRA} />} />
 
       </Switch>
       </div>
@@ -219,9 +218,9 @@ function MyAccount(props) {
   );
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   getChecking: (values) => {dispatch(getChecking(values))}
-// });
+ const mapDispatchToProps = (dispatch) => ({
+   addUser: () => dispatch(addUser())
+ });
 //
 // const mapStateToProps = (dispatch) => ({
 //   getChecking: (values) => { dispatch (getChecking(values))},
@@ -230,5 +229,5 @@ function MyAccount(props) {
 // });
 
 
-//export default connect(mapStateToProps)(MyAccount);
-export default MyAccount;
+export default connect(mapDispatchToProps)(MyAccount);
+//export default MyAccount;

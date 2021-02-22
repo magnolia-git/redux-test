@@ -15,6 +15,8 @@ class UserServices {
         return axios.post(baseUrlAWS + 'api/authenticate/createUser', user);
     }
 
+
+
     // postAccount(accountType, userName, data, jwt){
     //     return axios.post(baseUrlAWS + 'Users/' + userName + '/' + accountType, { headers: {"Authorization" : `Bearer ${jwt}`}}, data);
     // }

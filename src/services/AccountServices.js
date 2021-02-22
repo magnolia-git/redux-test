@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { baseUrl } from '../shared/baseUrl';
+import { baseUrlAWS } from '../shared/baseUrl';
 
 class AccountServices {
 
-  getChecking(userName) {
-      return axios.get(baseLocal + 'Users/' + userName + '/Checking Account');
+  postCheckingAccount(account) {
+    return axios.post(baseUrlAWS + 'api/Me/CheckingAccount', account);
   }
+
+
 
 }
 

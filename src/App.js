@@ -44,7 +44,7 @@ class App extends Component {
           <Route path="/team" component={() => <Team team={this.props.team} />} />
           <Route path="/support" component={() => <Support />} />
           <Route path="/register" component={() => <Register user={this.props.user} jwt={this.props.jwt} />} />
-          <Route path="/account" component={() => <MyAccount user={this.props.user} jwt={this.props.jwt} />} />
+          <Route path="/account" component={() => <MyAccount addUser={this.props.addUser} user={this.props.user} jwt={this.props.jwt} />} />
         </Switch>
         <Footer />
       </div>

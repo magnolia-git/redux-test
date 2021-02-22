@@ -19,3 +19,8 @@ export const NewUser = {
   userName: '',
   password: ''
 };
+
+export const NewAccount = {
+  accountType: '',
+  amount: ''
+}

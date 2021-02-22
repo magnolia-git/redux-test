@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 import { addJWT, addUser } from '../redux/ActionCreators';
 import { Form } from 'react-redux-form';
-import { Button, Col, Row } from 'reactstrap';
+import { Button, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { baseUrlAWS } from '../shared/baseUrl';
 import {Redirect, withRouter, Link }from 'react-router-dom';
+
+let isLoggedIn = false;
 
 const mapDispatchToProps = (dispatch) => ({
   addUser: () => dispatch(addUser()),
@@ -13,12 +15,14 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Home extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       err: '',
       userName: '',
-      password: ''
+      password: '',
+      isLoggedIn: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,11 +51,11 @@ class Home extends Component {
 
   render () {
 
-    // const{ isLoggedIn } = this.props;
+    const { isLoggedIn } = this.props;
     //
-    // if (isLoggedIn){
-    //   return(<Redirect to="/account" />)
-    // }
+    if (isLoggedIn){
+       return(<Redirect to="/account" />)
+    } else {
 
 
     return (
@@ -81,7 +85,8 @@ class Home extends Component {
           </div>
         </div>
       </div>
-    )
+    );
+  }
   }
 }
 

@@ -22,6 +22,8 @@ export const ConfigureStore = () => {
         signin: InitialUser,
         register: NewUser
       })
+//    }), applyMiddleware(thunk, logger)
+//  );
     }), composeEnhancers(
     applyMiddleware(thunk, logger)
   ));
