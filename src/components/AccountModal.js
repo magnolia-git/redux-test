@@ -27,9 +27,9 @@ class AccountModal extends Component {
   handleSubmit = async (event) => {
         event.preventDefault();
         const data = this.state;
-        if(this.props.user.dbaCheckings.length == 3 && this.state.accountType == 'DBAChecking'){
+        if(this.props.user.dbaCheckings.length == 3 && this.state.accountType == 'DBACheckingAccount'){
             alert("Only 3 Business Checking Accounts allowed. Account not created.");
-        } else if(this.props.user.savingsAccounts != null && this.state.accountType == 'SavingsAccount'){
+        } else if(this.props.user.savingsAccounts != null && this.state.accountType == 'SavingsAccounts'){
             alert("Only 1 Savings Account allowed. Account not created.");
         } else if(this.props.user.checkingAccounts != null && this.state.accountType == 'CheckingAccount'){
             alert("Only 1 Personal Checking Account allowed. Account not created.");
@@ -75,8 +75,8 @@ class AccountModal extends Component {
           <Form onSubmit={this.handleSubmit}>
         <Input type="select" name="accountType" onChange={this.handleInputChange}>
           <option onClick={this.setAccountType} value="CheckingAccount">Personal Checking Account</option>
-          <option onClick={this.setAccountType} value="DBAChecking">Business Checking Account</option>
-          <option onClick={this.setAccountType} value="SavingsAccount">Savings Account</option>
+          <option onClick={this.setAccountType} value="DBACheckingAccount">Business Checking Account</option>
+          <option onClick={this.setAccountType} value="SavingsAccounts">Savings Account</option>
           <option onClick={this.setAccountType} value="RolloverIRA">Rollover IRA Account</option>
           <option onClick={this.setAccountType} value="RothIRA">Roth IRA Account</option>
           <option onClick={this.setAccountType} value="IRA">IRA Account</option>

@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TransactionComponent from './TransactionComponent';
 import TransactionHistoryComponent from './TransactionHistoryComponent';
+import TransferComponent from './TransferComponent';
 import { addUser } from '../redux/ActionCreators';
 import { baseUrlAWS } from '../shared/baseUrl';
 
@@ -42,6 +43,8 @@ function RenderAccountInfo({account, transactionAcctType, jwt, props}){
           <Button block onClick={deleteAccount} color="danger">Delete Account</Button>
           <p />
           <TransactionComponent transactionAcctType={transactionAcctType} account={account} jwt={jwt} />
+          <p />
+          <TransferComponent account={account} jwt={jwt} />
         </div>
       </div>
       <div className="row">
@@ -118,6 +121,8 @@ function Accounts(props) {
                   <Button block onClick={deleteAccounts} color="danger">Delete Account</Button>
                   <p />
                   <TransactionComponent transactionAcctType={props.transactionAcctType} account={props.accounts} jwt={props.jwt} />
+                  <p />
+                  <TransferComponent account={props.accounts} jwt={props.jwt} />
                 </div>
               </div>
               <div className="row">
