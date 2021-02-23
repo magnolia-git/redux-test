@@ -74,7 +74,7 @@ class Register extends Component {
       <div id="inputBox">
       <Form model="register" onSubmit={this.handleSubmit}>
         <Row className="form-group" xs={6}>
-          <Col xs={12}>
+          <Col xs={4}>
             <input type="text"
               model=".firstName"
               id="firstName"
@@ -94,9 +94,7 @@ class Register extends Component {
               }}
             />
           </Col>
-        </Row>
-        <Row className="form-group" xs={6}>
-          <Col xs={12}>
+          <Col xs={4}>
             <input type="text"
               model=".middleName"
               id="middleName"
@@ -106,9 +104,7 @@ class Register extends Component {
               onChange={this.handleInputChange}
             />
           </Col>
-        </Row>
-        <Row className="form-group" xs={6}>
-          <Col xs={12}>
+          <Col xs={4}>
             <input type="text"
               model=".lastName"
               id="lastName"

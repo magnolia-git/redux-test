@@ -3,7 +3,7 @@ import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 import { addJWT, addUser } from '../redux/ActionCreators';
 import { Form } from 'react-redux-form';
-import { Button, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Col, Row, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label } from 'reactstrap';
 import { baseUrlAWS } from '../shared/baseUrl';
 import {Redirect, withRouter, Link }from 'react-router-dom';
 
@@ -34,10 +34,10 @@ class Home extends Component {
        const user = this.state.userName;
        const pass = this.state.password;
        const jwt = await axios.post(baseUrlAWS + 'api/authenticate', { userName: user, password: pass });
-       alert(JSON.stringify(jwt.data.jwt));
+
        this.props.dispatch(addJWT(jwt.data.jwt));
        axios.get(baseUrlAWS + 'api/Me', { headers: {"Authorization" : `Bearer ${jwt.data.jwt}`}})
-           .then((response) => this.props.dispatch(addUser(response.data)));
+           .then((response) => {this.props.dispatch(addUser(response.data));alert("Login Successful!");});
     }
 
 
@@ -60,18 +60,18 @@ class Home extends Component {
 
     return (
       <div id="bg" className="container">
-        <h2 id="title">We love our customers and their money</h2>
+        <h2 id="title">Modern Banking Solutions for Modern Times</h2>
         <hr />
         <div style={{padding: '5px'}} className="row align-items-center">
           <div className="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-8 offset-2" id="inputBox">
           <h4>Welcome Back!</h4>
 
           <Form model="signin" onSubmit={this.handleSubmit}>
-
-          <input type="text" model=".userName" name="userName" value={this.state.userName} onChange={this.handleInputChange}/>
-
-          <input type="password" model=".password" name= "password" value={this.state.password} onChange={this.handleInputChange}/>
-
+          <Label>Username</Label>
+          <Input type="text" model=".userName" name="userName" value={this.state.userName} onChange={this.handleInputChange}/>
+          <Label>Password</Label>
+          <Input type="password" model=".password" name= "password" value={this.state.password} onChange={this.handleInputChange}/>
+          <p />
             <Row className="form-group">
               <Col xs={12}>
                 <Button type="submit" block color="primary">Login</Button>
