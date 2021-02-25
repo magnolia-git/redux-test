@@ -16,6 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 function RenderAccountInfo({account, transactionAcctType, jwt, props}){
 
+  // lambda function for deleting an account
+
   const deleteAccount = async (event) => {
     event.preventDefault();
     await axios.delete(baseUrlAWS + 'api/Me/Delete/' + account.id,
@@ -27,8 +29,10 @@ function RenderAccountInfo({account, transactionAcctType, jwt, props}){
         });
   }
 
+  // Some variables for rendering the dates properly
   let date = new Date(account.openedOn);
   let formattedDate = format(date, "MMMM do, yyyy h:mma");
+
   return (
     <div>
       <div className="row">

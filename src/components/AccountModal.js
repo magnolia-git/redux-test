@@ -18,6 +18,7 @@ class AccountModal extends Component {
     this.state = {
       accountType: 'CheckingAccount',
       balance: null,
+      cDOfferingID: null,
       modal: false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,7 +27,12 @@ class AccountModal extends Component {
 
   handleSubmit = async (event) => {
         event.preventDefault();
-        const data = this.state;
+        const id = {"id" : this.state.cDOfferingID};
+        const data = {
+          accountType: this.state.accountType,
+          balance: this.state.balance,
+          cDOffering: this.id
+        }
         if(this.props.user.dbaCheckings.length == 3 && this.state.accountType == 'DBACheckingAccount'){
             alert("Only 3 Business Checking Accounts allowed. Account not created.");
         } else if(this.props.user.savingsAccounts != null && this.state.accountType == 'SavingsAccounts'){
@@ -41,7 +47,7 @@ class AccountModal extends Component {
             alert("Only 1 Roth IRA Account allowed. Account not created.");
         }else{
             console.log(this.state);
-            await axios.post(baseUrlAWS + 'api/Me/' + this.state.accountType, this.state,
+            await axios.post(baseUrlAWS + 'api/Me/' + this.state.accountType, data,
                          { headers: {"Authorization" : `Bearer ${this.props.jwt.jwt}`}});
             axios.get(baseUrlAWS + 'api/Me/', { headers: {"Authorization" : `Bearer ${this.props.jwt.jwt}`}})
                 .then((response) => {
@@ -80,8 +86,14 @@ class AccountModal extends Component {
           <option onClick={this.setAccountType} value="RolloverIRA">Rollover IRA Account</option>
           <option onClick={this.setAccountType} value="RothIRA">Roth IRA Account</option>
           <option onClick={this.setAccountType} value="IRA">IRA Account</option>
+          <option onClick={this.setAccountType} value="CDAccount">CD Account</option>
         </Input>
         <Input type="text" name="balance" onChange={this.handleInputChange} />
+        {this.state.accountType == "CDAccount" ? (
+          <Input type="text" name="cDOfferingID" onChange={this.handleInputChange} />
+        ) : (
+          <></>
+        )}
         <Button color="success" type="submit" onClick={this.toggle}>Create</Button>
           </Form>
         </ModalBody>

@@ -238,7 +238,7 @@ function TransactionHistoryComponent(props) {
   else {
     return (
       <div>
-      <p>wow</p>
+      <p>wow, you shouldn't be able to see this. how'd you do that?</p>
       </div>
     )
   }

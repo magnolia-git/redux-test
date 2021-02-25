@@ -20,10 +20,12 @@ class TransactionComponent extends Component {
       transactionType: 'Deposit',
       transactionAcctType: this.props.transactionAcctType
     }
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
+  }
+  // Create Transaction.
   handleSubmit = async (event) => {
     event.preventDefault();
     const amount = this.state.amount;
@@ -33,8 +35,7 @@ class TransactionComponent extends Component {
       "amount" : amount
     };
     data[transAccType] = id;
-    console.log(data);
-    console.log(this.props.jwt);
+
     await axios.post(baseUrlAWS + 'api/Me/' + this.props.account.typeOfAccount + '/' + this.state.transactionType, data,
       { headers: {"Authorization" : `Bearer ${this.props.jwt}`}});
     axios.get(baseUrlAWS + 'api/Me/', { headers: {"Authorization" : `Bearer ${this.props.jwt}`}})
@@ -59,25 +60,24 @@ class TransactionComponent extends Component {
   render() {
     return (
       <div>
-      <Button block onClick={this.toggle}>Deposit/Withdraw</Button>
-      <Modal isOpen={this.state.modal} toggle={this.toggle}>
-        <ModalHeader>Create Transaction </ModalHeader>
-        <ModalBody>
-          <p>Specify whether to withdraw or deposit and the amount, then click "Create."</p>
-          <Form onSubmit={this.handleSubmit}>
-        <Input type="select" name="transactionType" onChange={this.handleInputChange}>
-          <option onClick={this.setTransactionType} value="Deposit">Deposit</option>
-          <option onClick={this.setTransactionType} value="Withdraw">Withdraw</option>
-        </Input>
-        <Input type="text" name="amount" onChange={this.handleInputChange} />
-        <Button color="success" type="submit" onClick={this.toggle}>Create</Button>
-          </Form>
-        </ModalBody>
-        <ModalFooter>
-
-          <Button color="danger" onClick={this.toggle}>Cancel</Button>
-        </ModalFooter>
-      </Modal>
+        <Button block onClick={this.toggle}>Deposit/Withdraw</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader>Create Transaction </ModalHeader>
+          <ModalBody>
+            <p>Specify whether to withdraw or deposit and the amount, then click "Create."</p>
+            <Form onSubmit={this.handleSubmit}>
+          <Input type="select" name="transactionType" onChange={this.handleInputChange}>
+            <option onClick={this.setTransactionType} value="Deposit">Deposit</option>
+            <option onClick={this.setTransactionType} value="Withdraw">Withdraw</option>
+          </Input>
+          <Input type="text" name="amount" onChange={this.handleInputChange} />
+          <Button color="success" type="submit" onClick={this.toggle}>Create</Button>
+            </Form>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     )
   };
